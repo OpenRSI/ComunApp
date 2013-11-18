@@ -1,4 +1,4 @@
-comuapp
-=======
+ComunApp
+========
 
-ComuApp
+Projet ComunApp

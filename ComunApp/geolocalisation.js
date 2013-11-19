@@ -17,7 +17,7 @@ function affMap($lat,$lng,$zoom) {
 	   var marker = new google.maps.Marker({
       position: myLatlng,
       map: map,
-      title: 'Hello World!'
+      title: 'vous etes ici'
   });
 
 	  

@@ -1,4 +1,4 @@
 ComunApp
 ========
 
-Projet ComunApp
+ComunApp by OpenRSI

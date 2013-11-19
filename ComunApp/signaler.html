@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script type="text/javascript" charset="utf-8" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/signaler.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/signaler.css" />
+    </head>
+    <body>
+        <p>
+            <button id="btnUuid" name="btnUuid" onclick="getUuid();">obtenir l'UUID</button>
+            <button id="btnCapture" name="btnCapture" onclick="capture();">prendre une photo</button>
+            <button id="btnClear" name="btnClear">clear</button>
+        </p>
+        <p>
+            <canvas id="previewImg"></canvas>
+        </p>
+    </body>
+</html>

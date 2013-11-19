@@ -1,0 +1,382 @@
+#main{
+	
+	-webkit-touch-callout: none;               
+    -webkit-text-size-adjust: none;             
+    -webkit-user-select: none;                  
+    background-color:#1BA1E2;
+    background-image:linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-ms-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #1BA1E2),
+        color-stop(0.90, #A6EDF2)
+    );
+  	
+
+
+	position: relative;
+	
+}
+
+#conteneur {
+
+	
+}
+
+.spanpratique{
+float:left;
+display:inline;
+}
+
+
+.img1 {
+	max-width:100%;
+    width:auto;
+    height:auto;
+	}
+	
+	
+.colonneH {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    
+}
+
+.colonneH1 {
+	display: inline-block;
+    vertical-align: top;
+    width: 12%;
+    float: right;
+	
+}
+
+.colonneHbis {
+	
+    width: 80%;
+	height:auto;
+	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+	color:white;
+	padding-top:10%;
+	position:absolute;
+	
+}
+
+
+.starid {
+		display: inline-block;
+		vertical-align: top;
+		width: auto;
+	    background: LightGrey;
+}
+
+
+
+
+
+#photos {
+
+	padding-top:6%;
+	padding-bottom:2%;
+}
+
+.canvas1{
+border: 5px solid #fff;
+
+box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+
+}
+
+
+
+
+.colonneP {
+
+    display: inline-block;
+    vertical-align: top;
+    width: 90%;
+	height:auto;
+    min-width: 150px;
+	max-height: 250px;
+	padding-bottom:2%;
+	
+}
+
+#photoP{
+	max-height: 250px;
+
+}
+
+
+.colonne {
+    display: inline-block;
+    vertical-align: top;
+	width:27%;
+    
+	padding:2%;
+    
+    
+    
+	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:14px;
+	font-weight:bold;
+	color:#A05000;
+		
+}
+
+.bouton{
+   
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+
+    box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset;
+
+}
+
+.bouton:hover{
+   
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+
+	
+	border-radius:20px;
+	box-shadow:3px 3px 10px black inset, 0 1px 0 rgba(255,255,255,0.5);
+	
+	
+	
+
+}
+
+
+
+
+
+
+#separateur{ 
+	width: 100%;
+	height: 10%;
+
+}
+
+#message{ 
+	width: 90%; 
+}
+
+
+.message1{
+
+	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:18px;
+	color:#7200AC;
+	text-shadow:1px 1px 2px gray;
+
+}
+
+.message1{
+
+	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:18px;
+	color:black;
+
+
+}
+
+
+
+
+
+.colonnePied {
+    display: inline-block;
+    vertical-align: top;
+	width:12%;
+	-webkit-border-top-right-radius: 20px;
+	-moz-border-radius-topright: 20px;
+	border-top-right-radius: 20px;
+	border-right:3px solid white;
+}
+
+
+.fondtable{
+
+	background-color:#EFEFEF;
+    background-image:linear-gradient(top, #EFEFEF 0%, #FFFFFF 90%);
+    background-image:-webkit-linear-gradient(top, #EFEFEF 0%, #FFFFFF 90%);
+    background-image:-ms-linear-gradient(top, #EFEFEF 0%, #FFFFFF 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #EFEFEF),
+        color-stop(0.90, #FFFFFF)
+    );
+
+	border-radius:20px;
+	width:100%;
+}
+
+
+
+.tdpratique0{
+
+height:46px;
+width:46px;
+max-height:46px;
+max-width:46px;
+
+}
+
+
+.tdpratique1{
+
+	background-color:#00C13F;
+    background-image:linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-webkit-linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-ms-linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #00C13F),
+        color-stop(0.90, #199900)
+    );
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+height:46px;
+width:46px;
+max-height:46px;
+max-width:46px;
+
+box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset;
+
+}
+
+
+.tdpratique1:hover{
+
+	background-color:#00C13F;
+    background-image:linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-webkit-linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-ms-linear-gradient(top, #00C13F 0%, #199900 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #00C13F),
+        color-stop(0.90, #199900)
+    );
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+height:46px;
+width:46px;
+max-height:46px;
+max-width:46px;
+
+	box-shadow:3px 3px 10px black inset, 0 1px 0 rgba(255,255,255,0.5);
+
+}
+
+.tdpratique12{
+height:46px;
+width:46px;
+max-height:46px;
+max-width:46px;
+
+}
+
+
+
+.retourphotodiv {
+    
+	width:50%;
+
+    min-width: 100px;
+	min-height: 100px;
+
+
+
+}
+
+#FondPhoto1{
+	
+	margin-top:4%;
+	
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 	
+
+			
+	margin-bottom:3%;
+
+}
+
+
+@media screen
+and (min-width: 200px)
+and (max-width: 560px){
+    /* Ensemble de r?gles CSS pour Smartphone */
+	
+	
+}
+	
+	
+
+@media screen
+and (min-width: 561px)
+and (max-width: 1000px){
+    /* Ensemble de r?gles CSS pour tablette */
+
+	
+#starC{	
+ font-size:18px;
+
+}
+	
+}
+
+@media screen
+and (min-width: 1001px){
+    /* Ensemble de r?gles CSS pour ?cran d'ordinateur */
+
+#starC{	
+ font-size:24px;
+
+}
+  
+  
+}

@@ -1,0 +1,27 @@
+body {
+    font-family: sans-serif, Arial, Segoe UI;
+	font-size: 16px;
+	margin: 0;
+	padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+button {
+	border: 1px solid #8d9096;
+    border-radius: 3px;
+    color: #4d5d6b;
+    background: transparent;
+    margin-left: 5%;
+    margin-top: 5%;
+    width: 40%;
+    display: inline;
+    float: left;
+}
+
+canvas {
+    margin-left : 2.5%;
+    width: 95%;
+    background-color: blue;
+}

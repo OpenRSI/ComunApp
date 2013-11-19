@@ -1,0 +1,429 @@
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+
+body {
+     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+}
+
+
+/* Portrait layout (default) */
+.app {
+    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:50%;
+    top:50%;
+    height:50px;                   /* text area height */
+    width:225px;                   /* text area width */
+    text-align:center;
+    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+}
+
+img {max-width:100%;
+width:auto;
+height:auto;}
+
+
+.logo{
+    /*background:url(../img/cordova.png) no-repeat left top;*/ /* 170px x 200px */
+    position:absolute;             /* position in the center of the screen */
+    left:1%;
+    top:0%;
+	height:40%;                   /* text area height */
+    width:45%;                   /* text area width */
+	
+}
+
+
+.app1 {
+    position:absolute;             /* position in the center of the screen */
+    left:5%;
+    top:0%;
+    height:90%;                   /* text area height */
+    width:90%;                   /* text area width */
+    text-align:justify;
+    padding:150px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    
+}
+
+#main{  -webkit-touch-callout: none;               
+    -webkit-text-size-adjust: none;             
+    -webkit-user-select: none;                  
+    background-color:#1BA1E2;
+    background-image:linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-ms-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #1BA1E2),
+        color-stop(0.90, #A6EDF2)
+    );
+	
+	}
+
+
+.app12 {
+    position:absolute;             /* position in the center of the screen */
+    left:5%;
+    top:0%;
+    height:90%;                   /* text area height */
+    width:90%;                   /* text area width */
+    text-align:justify;
+    padding:150px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    font-size:24px;
+	background-color:#333333;
+    display:block;
+}
+
+.event.received {
+	font-size:24px;
+    background-color:#4B946A;
+    display:none;
+	text-align:center;
+}
+
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+.bouton1{
+
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton10{
+
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonA{
+
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:25%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}
+
+
+.bouton2{
+   
+   	
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+   
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton20{
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonB{
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:25%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}
+
+.bouton3{
+   
+   	
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton30{
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:25%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonC{
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:25%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}
+.bouton4{
+   
+   	
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton40{
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonD{
+	position:absolute;             /* position in the center of the screen */
+    left:15%;
+    top:50%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}
+.bouton5{
+   
+   	
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton50{
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonE{
+	position:absolute;             /* position in the center of the screen */
+    left:40%;
+    top:50%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}
+
+.bouton6{
+   
+   	
+    background-color:#AA40FF;
+    background-image:linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-ms-linear-gradient(top, #AA40FF 0%, #7200AC 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #AA40FF),
+        color-stop(0.90, #7200AC)
+    );
+	
+		
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;                   /* text area width */	
+
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	
+}
+
+.bouton60{
+	background:url(../img/news.png) no-repeat center center;
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:50%;
+	height:96px;                   /* text area height */
+    width:96px;  
+
+}
+
+.boutonF{
+	position:absolute;             /* position in the center of the screen */
+    left:65%;
+    top:50%;
+	text-align:center;
+	font-size:18px;
+	margin:85px 0px 0px 0px;
+	width:96px; 
+}

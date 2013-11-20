@@ -27,7 +27,9 @@ function captureError(error) {
     navigator.notification.alert(msg, null, 'Uh oh!');
 }
 
-$(document).ready(function() {
+
+
+/* $(document).ready(function() {
     var color = "ff0000";
 	var painting = false;
 	var started = false;
@@ -67,6 +69,7 @@ $(document).ready(function() {
 		}
 	});
     
+
     function drawLine() {
 		// Si c'est le début, j'initialise
 		if (!started) {
@@ -84,8 +87,11 @@ $(document).ready(function() {
 		}
 	}
     
+
     $("#btnClear").click(function() {
 		ctx.clearRect(0,0, canvas.width(), canvas.height());
         ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 	});
-});
+    
+    
+}); */

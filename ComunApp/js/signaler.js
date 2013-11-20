@@ -1,5 +1,69 @@
+
+
+//fonction récuparation code postal
+
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+var code_postal;
+
+  /* Fonction d'initialisation de la map appelée au chargement de la page  */
+  function initialize() {
+    geocoder = new google.maps.Geocoder();
+    //var latlng = new google.maps.LatLng(48.8566667, 2.3509871);
+    //var myOptions = {
+      //zoom: 8,
+      //center: latlng,
+     // mapTypeId: google.maps.MapTypeId.ROADMAP
+    //}
+    //map = new google.maps.Map(document.getElementById("hidden_map"), myOptions);
+  }
+
+  /* Fonction de géocodage inversé (en fonction des coordonnées de l'adresse)  */
+  function codeLatLng(input) {
+    var latlngStr = input.split(",",2);
+    var lat = parseFloat(latlngStr[0]);
+    var lng = parseFloat(latlngStr[1]);
+      alert('ok');
+    var latlng = new google.maps.LatLng(lat, lng);
+      
+      alert(lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          //map.setZoom(11);
+          //marker = new google.maps.Marker({
+            //position: latlng,
+            //map: map
+          //});
+          var elt = results[0].address_components;
+          for(i in elt){
+              if(elt[i].types[0] == 'postal_code') {
+                  code_postal = elt[i].types[0];
+              }
+          }
+          //infowindow.setContent(results[0].formatted_address);
+          //infowindow.open(map, marker);
+          //map.setCenter(latlng);
+          return code_postal;
+        }
+      } else {
+        return "Geocoder failed due to: " + status;
+      }
+    });
+  }
+
+
+//fin fonction récuparation code postal
+
 function getUuid() {
-    alert('Device UUID: ' + device.uuid);
+    navigator.geolocation.getCurrentPosition(function(position){
+        var input = position.coords.latitude + ',' + position.coords.longitude;
+        alert(codeLatLng(input));
+    }, function(){
+        
+    });
     
 }
 

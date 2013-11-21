@@ -17,7 +17,7 @@
   	
 
 
-	/*position: relative;*/
+	position: relative;
 	
 }
 
@@ -52,7 +52,7 @@ display:inline;
     width: 12%;
     float: right;
     
-    /* Ajout Boris le 21/11 */
+    /*Ajout du 21/11 BS */
     position:relative;
     
     
@@ -207,6 +207,17 @@ box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
 
 }
 
+.message1{
+
+	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:18px;
+	color:black;
+
+
+}
+
+
+
 
 
 .colonnePied {
@@ -315,7 +326,7 @@ max-width:46px;
 
 
 
-.retourphotodiv{
+.retourphotodiv {
     
 	width:50%;
 

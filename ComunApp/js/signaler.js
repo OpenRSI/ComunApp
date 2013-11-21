@@ -2,25 +2,21 @@
 
 //fonction récuparation code postal
 
-var geocoder;
-var map;
-var infowindow = new google.maps.InfoWindow();
-var marker;
-var code_postal;
 
-  /* Fonction d'initialisation de la map appelée au chargement de la page  */
+
+  /* Fonction d'initialisation de la map appelée au chargement de la page  
   function initialize() {
     geocoder = new google.maps.Geocoder();
-    //var latlng = new google.maps.LatLng(48.8566667, 2.3509871);
-    //var myOptions = {
-      //zoom: 8,
-      //center: latlng,
-     // mapTypeId: google.maps.MapTypeId.ROADMAP
-    //}
-    //map = new google.maps.Map(document.getElementById("hidden_map"), myOptions);
-  }
+    var latlng = new google.maps.LatLng(48.8566667, 2.3509871);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+   map = new google.maps.Map(document.getElementById("hidden_map"), myOptions);
+  }*/
 
-  /* Fonction de géocodage inversé (en fonction des coordonnées de l'adresse)  */
+  /* Fonction de géocodage inversé (en fonction des coordonnées de l'adresse)  
   function codeLatLng(input) {
     var latlngStr = input.split(",",2);
     var lat = parseFloat(latlngStr[0]);
@@ -52,49 +48,23 @@ var code_postal;
         return "Geocoder failed due to: " + status;
       }
     });
-  }
+  }*/
 
 
 //fin fonction récuparation code postal
 
-function getUuid() {
-    navigator.geolocation.getCurrentPosition(function(position){
-        var input = position.coords.latitude + ',' + position.coords.longitude;
-        alert(codeLatLng(input));
-    }, function(){
-        
-    });
-    
-}
-
-function capture() {
-    navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
-}
-
-function captureSuccess(capturedFiles) {
-    img = new Image();
-    img.src = capturedFiles[0].fullPath;
-    img.onload = function(){
-        imageWidth = img.width;
-        imageHeight = img.height;
-        var canvas = document.getElementById('previewImg');
-        imageHeight = imageHeight * canvas.width / imageWidth;
-        imageWidth = canvas.width;
-        canvas.height = imageHeight;
-        var ctx = document.getElementById('previewImg').getContext('2d');
-        ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-    }
-}
-
-function captureError(error) {
-    var msg = 'An error occurred during capture: ' + error.code;
-    navigator.notification.alert(msg, null, 'Uh oh!');
-}
 
 
 
-/* $(document).ready(function() {
-    var color = "ff0000";
+
+
+
+$(document).bind('pageinit', function() {
+    /*var map;
+    var infowindow = new google.maps.InfoWindow();
+    var marker;*/
+    var code_postal;
+    /*var color = "ff0000";
 	var painting = false;
 	var started = false;
 	var width_brush = 2;
@@ -104,9 +74,9 @@ function captureError(error) {
 	var restoreCanvasIndex = 0;
     var ctx = canvas[0].getContext('2d');
     ctx.lineJoin = 'round';
-	ctx.lineCap = 'round';
+	ctx.lineCap = 'round';*/
     
-    canvas.mousedown(function(e) {
+    /*canvas.mousedown(function(e) {
 		painting = true;
 		
 		// Coordonnées de la souris :
@@ -152,10 +122,68 @@ function captureError(error) {
 	}
     
 
-    $("#btnClear").click(function() {
+    $("#btnClear").bind( "click", function() {
 		ctx.clearRect(0,0, canvas.width(), canvas.height());
         ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-	});
+	});*/
     
+    $("#btnUuid").bind( "click", function() {
+            navigator.geolocation.getCurrentPosition(function(position){
+                var input = position.coords.latitude + ',' + position.coords.longitude;
+                $.getJSON( "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + input + "&sensor=true", function(data) {
+                    code_postal = data['results'][0]['address_components'][6]['long_name'];
+                    alert(code_postal);
+                });
+            }, function(){
+            });
+    });
     
-}); */
+    /*$("btnCapture").bind( "click", function() {
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
+    });
+    
+    function captureSuccess(capturedFiles) {
+        img = new Image();
+        img.src = capturedFiles[0].fullPath;
+        img.onload = function(){
+            imageWidth = img.width;
+            imageHeight = img.height;
+            var canvas = document.getElementById('previewImg');
+            imageHeight = imageHeight * canvas.width / imageWidth;
+            imageWidth = canvas.width;
+            canvas.height = imageHeight;
+            var ctx = document.getElementById('previewImg').getContext('2d');
+            ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+        }
+    }
+
+    function captureError(error) {
+        var msg = 'An error occurred during capture: ' + error.code;
+        navigator.notification.alert(msg, null, 'Uh oh!');
+    }*/
+    
+   /* function codeLatLng(input) {
+        var latlngStr = input.split(",",2);
+        var lat = parseFloat(latlngStr[0]);
+        var lng = parseFloat(latlngStr[1]);
+        alert('ok');
+        var latlng = new google.maps.LatLng(lat, lng);
+        alert(lng);
+        geocoder.geocode({'latLng': latlng}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var elt = results[0].address_components;
+                    for(i in elt){
+                        if(elt[i].types[0] == 'postal_code') {
+                            code_postal = elt[i].types[0];
+                        }
+                    }
+                    return code_postal;
+                }
+            } else {
+                return "Geocoder failed due to: " + status;
+            }
+        });
+    }
+    */
+});

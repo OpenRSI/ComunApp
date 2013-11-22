@@ -12,7 +12,7 @@
     
     <body>       
         
-       <div id="main" data-role="page">
+       <div id="main" data-role="page" >
         
            
            	<div data-role="header" data-fullscreen="true" data-theme="b">
@@ -48,14 +48,57 @@
            		<center><canvas data-theme="e" id="previewImg"></canvas></center>
            
                 
-           			<center><div><input id="btnCapture" name="btnCapture" data-theme="e" type="button" value="Prendre une photo"/></div></center>
+				
+                
+                
+                <!-- Ajout Boris 22/11 -->
+                
+                <script type="text/javascript">    
+                
+                
+                    $("#btnCapture").bind( "click", function() {
+        					navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
+    				});
+    
+    				function captureSuccess(capturedFiles) {
+        						img = new Image();
+        						img.src = capturedFiles[0].fullPath;
+        						img.onload = function(){
+           							 	imageWidth = img.width;
+            							imageHeight = img.height;
+            							var canvas = document.getElementById('previewImg');
+            							imageHeight = imageHeight * canvas.width / imageWidth;
+           								imageWidth = canvas.width;
+            							canvas.height = imageHeight;
+            							var ctx = document.getElementById('previewImg').getContext('2d');
+            							ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+       							}
+    				}
+
+    				function captureError(error) {
+        					var msg = 'An error occurred during capture: ' + error.code;
+        					navigator.notification.alert(msg, null, 'Uh oh!');
+    				}
+                
+    
+                
+                </script>                
+                
+                <!----------------------------------------------------->
+                
+                
+                
+                
+                
+                
+           			<center><div><input id="btnCapture" name="btnCapture" data-theme="e" type="button" value="Prendre une photo" /></div></center>
            
                  	<center><div><textarea id="commentaire" name="commentaire" data-theme="e" rows=40 COLS=40></textarea></div></center>
            
                    	<center><div><input id="btnUuid" name="btnUuid" data-theme="e" type="button" value="Obtenir l'UUID" /></div></center>
         	
               
-        	</div>
+                </div>
      
     
     

@@ -55,6 +55,7 @@
 
 
 
+    
 
 
 
@@ -127,7 +128,9 @@ $(document).bind('pageinit', function() {
         ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 	});*/
     
-    $("#btnUuid").bind( "click", function() {
+
+    
+ $("#btnUuid").bind( "click", function() {
             navigator.geolocation.getCurrentPosition(function(position){
                 var input = position.coords.latitude + ',' + position.coords.longitude;
                 $.getJSON( "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + input + "&sensor=true", function(data) {
@@ -138,29 +141,11 @@ $(document).bind('pageinit', function() {
             });
     });
     
-    /*$("btnCapture").bind( "click", function() {
-        navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
-    });
     
-    function captureSuccess(capturedFiles) {
-        img = new Image();
-        img.src = capturedFiles[0].fullPath;
-        img.onload = function(){
-            imageWidth = img.width;
-            imageHeight = img.height;
-            var canvas = document.getElementById('previewImg');
-            imageHeight = imageHeight * canvas.width / imageWidth;
-            imageWidth = canvas.width;
-            canvas.height = imageHeight;
-            var ctx = document.getElementById('previewImg').getContext('2d');
-            ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-        }
-    }
-
-    function captureError(error) {
-        var msg = 'An error occurred during capture: ' + error.code;
-        navigator.notification.alert(msg, null, 'Uh oh!');
-    }*/
+    
+    
+   
+    
     
    /* function codeLatLng(input) {
         var latlngStr = input.split(",",2);
@@ -186,4 +171,42 @@ $(document).bind('pageinit', function() {
         });
     }
     */
+    
+    
+    
+    
+   
+    
+    
 });
+
+
+ /* Modification faite par Boris le 22/11 */
+
+ $("#btnCapture").bind( "click", function() {
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
+    });
+    
+    function captureSuccess(capturedFiles) {
+        img = new Image();
+        img.src = capturedFiles[0].fullPath;
+        img.onload = function(){
+            imageWidth = img.width;
+            imageHeight = img.height;
+            var canvas = document.getElementById('previewImg');
+            imageHeight = imageHeight * canvas.width / imageWidth;
+            imageWidth = canvas.width;
+            canvas.height = imageHeight;
+            var ctx = document.getElementById('previewImg').getContext('2d');
+            ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+        }
+    }
+
+    function captureError(error) {
+        var msg = 'An error occurred during capture: ' + error.code;
+        navigator.notification.alert(msg, null, 'Uh oh!');
+    }
+
+
+ /* - - - - - - - - - - - - - - - - - - - - - - - */
+

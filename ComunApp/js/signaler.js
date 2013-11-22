@@ -112,7 +112,7 @@ $(document).bind('pageinit', function() {
 			ctx.beginPath();
 			ctx.moveTo(cursorX, cursorY);
 			started = true;
-		} 
+		}
 		// Sinon je dessine
 		else {
 			ctx.lineTo(cursorX, cursorY);

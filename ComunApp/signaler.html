@@ -46,15 +46,13 @@
                		</center>
            
                       
-           		<center><canvas data-theme="e" id="previewImg"></canvas></center>
+           			<center><canvas data-theme="e" id="previewImg"></canvas></center>
            
+                   
                 
-				
+                	<!-- Ajout Boris 22/11 --------------------------------->   		
                 
-                
-                <!-- Ajout Boris 22/11 -->
-                
-                <script type="text/javascript">    
+                	<script type="text/javascript">    
                 
                 
                     $("#btnCapture").bind( "click", function() {
@@ -67,28 +65,30 @@
         						img.onload = function(){
            							 	imageWidth = img.width;
             							imageHeight = img.height;
-            							var canvas = document.getElementById('previewImg');
-            							imageHeight = imageHeight * canvas.width / imageWidth;
-           								imageWidth = canvas.width;
-            							canvas.height = imageHeight;
-            							var ctx = document.getElementById('previewImg').getContext('2d');
-            							ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+            							var canvas1 = document.getElementById('previewImg');
+                                    	imageHeight = imageHeight * canvas1.width / imageWidth;
+                                    	imageWidth = canvas1.width;
+                                    	canvas1.height = imageHeight;
+                                    
+                                    	var ctx=canvas1.getContext("2d");
+                                    	ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+
+                                    
+                                    
        							}
     				}
 
     				function captureError(error) {
-        					var msg = 'An error occurred during capture: ' + error.code;
-        					navigator.notification.alert(msg, null, 'Uh oh!');
-    				}
+                        var msg = 'La prise de photo à été annulée. ' + error.code;
+        					navigator.notification.alert(msg, null, 'Annuler !');
+
+                    }
                 
     
                 
                 </script>                
                 
-                <!----------------------------------------------------->
-                
-                
-                
+                <!----------------------------------------------------->      
                 
                 
                 

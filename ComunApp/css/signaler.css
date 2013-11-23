@@ -1,4 +1,4 @@
-<!-- body {
+/* body {
     font-family: sans-serif, Arial, Segoe UI;
 	font-size: 16px;
 	margin: 0;
@@ -18,11 +18,19 @@ button {
     width: 40%;
     display: inline;
     float: left;
-}-->
+}
 
-<!--canvas {
+canvas {
     margin-left : 2.5%;
     margin-right : 2.5%;
     width: 90%;
     background-color: blue;
-}-->
+}*/
+
+
+/*----- Modification Boris 23/11---------------*/
+canvas {
+
+    width: 90%;
+    background-color: blue;
+}

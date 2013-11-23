@@ -28,25 +28,23 @@
               
        		<div id="conteneur" data-role="content">
         
- 				           		
-           			<center>
-                        <div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" > <h3>Choisissez la nature du problème :</h3>
+ 				          <center>
+                               
+                               <div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" > <h3>Choisissez la nature du problème :</h3>
 		
-							<fieldset data-role="controlgroup" data-mini="true">
-									<legend>Choisissez l'intitulé le plus approprié</legend>
-									<input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="off">
-									<label for="radio-choice-v-6a">Détérioration infrasctructure</label>
-									<input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
-									<label for="radio-choice-v-6b">Vendalisme sur des biens public</label>
-									<input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="off">
-									<label for="radio-choice-v-6c">Demande d'amélioration</label>
-
-                                	
-							</fieldset>	
+				                        <fieldset data-role="controlgroup" data-mini="true">
+				                        <legend>Choisissez l'intitulé le plus approprié</legend>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="off">
+				                        <label for="radio-choice-v-6a">Détérioration infrasctructure</label>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
+				                        <label for="radio-choice-v-6b">Vendalisme sur des biens public</label>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="off">
+				                        <label for="radio-choice-v-6c">Demande d'amélioration</label>
+				                        </fieldset>	
 						
-						</div>
-               		</center>
-           
+			                        </div>
+                               
+                           </center>    
                       
            			<center><canvas data-theme="e" id="previewImg"></canvas></center>
            
@@ -65,19 +63,21 @@
         						img = new Image();
         						img.src = capturedFiles[0].fullPath;
         						img.onload = function(){
-           							 	imageWidth = img.width;
-            							imageHeight = img.height;
-            							var canvas1 = document.getElementById('previewImg');
-                                    	imageHeight = imageHeight * canvas1.width / imageWidth;
-                                    	imageWidth = canvas1.width;
-                                    	canvas1.height = imageHeight;
+           							 imageWidth = img.width;
+            						    imageHeight = img.height;
+            							var canvas11 = document.getElementById('previewImg');
+                                    	
+                                        imageHeight = imageHeight * canvas11.width / imageWidth;
+                                        imageWidth = canvas11.width;
+                                    	
+                                        canvas11.Width = imageWidth;
+                                        canvas11.height = imageHeight;
                                     
-                                    	var ctx=canvas1.getContext("2d");
-                                    	ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-
-                                    
-                                    
+                                    	var ctx=canvas11.getContext("2d");
+                                        ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+                                  
        							}
+                        
     				}
 
     				function captureError(error) {

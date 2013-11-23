@@ -1,63 +1,99 @@
-
-
-// --- Afichage de la carte ---
-function affMap(){
+  
+  function main(){
+    document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
-	var watchID=navigator.geolocation.watchPosition(successCallback,null);
-	initMap($positionIni);
-	
-	function successCallback(position){
-		afficheInfo($infos);
-		$positionActuel = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-		$longitude = position.coords.longitude;
-		$latitude = position.coords.latitude;
-		initMap($positionActuel); 
-		$infos= getCommune($latitude,$longitude);
-	} //successCallback()
+    if ((newLongitude != $longitude) || (newLongitude != $longitude)){      
+      updateGpsPosition();
+    }    
+  }
+    
+  function onDeviceReady() {
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  } 
 
-   }
+  /*
+  *   onSuccess : Lecture du capteur GPS , affiche Map et marker 
+  */  
+  function onSuccess(position) {
+    $latitude = position.coords.latitude; 
+    $longitude = position.coords.longitude;
+    afficheMap($latitude, $longitude);
+    afficheMarker($latitude, $longitude);
+  }
+  
+  /*
+  *   onError Callback receives a PositionError object
+  */
+  function onError(error) {
+    $infos='err : '+ error.code+' message: ' + error.message;        
+    afficheInfo($infos);           
+  }
    
-    
-// --- Affiche les infos sur la carte ---
+ function updateGpsPosition(){  
+     
+ var watchId = navigator.geolocation.watchPosition(
+        
+    function(position){ 
+      newLatitude = position.coords.latitude; 
+      newLongitude = position.coords.longitude;
+       if (position.coords.accuracy < 100){
+          getCommune( newLatitude, newLongitude);
+          afficheMarker(newLatitude,newLongitude);
+      }
+   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
+     
+      
+ }      
+         
+/*
+*  Arrete la lecture du capteur GPS 
+*/		   
+function stopWatch(){
+  navigator.geolocation.clearWatch(watchId);
+}    
+  
+/*
+*  Affiche les infos sur la carte 
+*/
 function afficheInfo($infos){
-    var div = document.getElementById("textDiv");
-	div.textContent = $infos;
+  var div = document.getElementById("textDiv");
+  div.textContent = $infos;
 }
 
+/*
+*  Creer une carte avec la position passé en parametre  
+*/
+function afficheMap(lat,lng){
+  var position = new google.maps.LatLng(lat,lng);
+  map = new google.maps.Map(document.getElementById('map'),mapOptions);
+  map.setCenter(position);
+}
 
-// --- Creer une carte avec la position passé en parametre  ----
-function initMap($pos){
-	
-	var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: $zoom,
-      center: $pos,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-	  scaleControl: true,
-	  panControl: false,
-      zoomControl: false,
-      streetViewControl: false,
-      overviewMapControl:  false,
-    });
+/*
+* afficher marker sur la carte
+*/
+function afficheMarker($lat,$lng) {
+  var myPosition =new google.maps.LatLng($lat,$lng);
+  var  iconIci = new google.maps.MarkerImage('img/icon1.png');
     
-// --- Affichage du marker vous etes ici  ---
-		var marker = new google.maps.Marker({
-			position: $pos  ,
-			title: "vous etes ici",
-			map: map
-			});
+  marker.setPosition(myPosition);
+   marker.setIcon(iconIci); 
+  marker.setMap(map);
+} 
+  
+/*
+*    Affiche le contour en fonction du fichier situer sur un serveur
+*/
+function afficheContour(){
+  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/cta.kml' });
+  ctaLayer.setMap(map);
 }
   
-  //--- Affiche le contour en fonction du fichier situer sur un serveur ---
-    function afficheContour(){
-  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/cta.kml' });
-   ctaLayer.setMap(map);
- }
-  
- // ---   fonction qui retourne le nom de la commune en fonction des coordonées GPS passé en parametre   
+ /*
+  *   Retourne le nom de la localité fonction des coordonées GPS passé en parametre
+  */   
  function getCommune(lati,longi) {
-  var geocoder;
-  var map;
-  geocoder = new google.maps.Geocoder();
+  var geocoder = new google.maps.Geocoder();
   var lat = parseFloat(lati);
   var lng = parseFloat(longi);
   var latlng = new google.maps.LatLng(lat, lng);
@@ -65,8 +101,9 @@ function initMap($pos){
   geocoder.geocode({'latLng': latlng}, function(results, status) {
   
     if (status == google.maps.GeocoderStatus.OK) {
-      if (results[2]) {
-		commune = results[2].formatted_address;
+      if (results[0]) {
+		commune = results[0].formatted_address;
+         afficheInfo(commune);
       } else {
 		commune='none';
       }

@@ -36,8 +36,9 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
+      getCommune( newLatitude, newLongitude);
        if (position.coords.accuracy < 100){
-          getCommune( newLatitude, newLongitude);
+        
           afficheMarker(newLatitude,newLongitude);
       }
    }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 

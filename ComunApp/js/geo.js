@@ -36,7 +36,8 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-      getCommune( newLatitude, newLongitude);
+      $infos=getCommune( newLatitude, newLongitude);
+       afficheInfo($infos);  
        if (position.coords.accuracy < 100){
         
           afficheMarker(newLatitude,newLongitude);
@@ -104,7 +105,7 @@ function afficheContour(){
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[0]) {
 		commune = results[0].formatted_address;
-         afficheInfo(commune);
+        
       } else {
 		commune='none';
       }

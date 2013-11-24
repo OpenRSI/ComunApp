@@ -31,7 +31,9 @@ function indexHTML(){
 </script>
 
 <script>
-                          // --- declaration des variables  globales ---
+                          /* **************************************************
+                           *    --- Declaration des Variables  Globales ---   *
+                           ***************************************************/
     var $latitudeInit;
 	var $longitudeInit;
     var $latitude=48.858565;
@@ -41,8 +43,22 @@ function indexHTML(){
 	var newLatitude = null;
     var $infos="Recherche nom de la localité";
     
+    // --- Coordonnées GPS des marker pour infobulle à visualiser sur la carte ---
+    var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content : 'evenement 1 contenu 1'};
+    var $Evenement2={ name: 'Event 2', lat: 48.844666, lng: 2.373519, content : 'evenement 2 contenu 2'}; 
+    var $Evenement3={ name: 'Event 3', lat: 48.843198, lng: 2.369957, content : 'evenement 3 contenu 3'};
+    var $Evenement4={ name: 'Event 4', lat:4, lng: 4, content : 'evenement 4 contenu 4'};
+    var $Evenement5={ name: 'Event 5', lat:5, lng: 5, content : 'evenement 5 contenu 5'};
+    
+   
     var $positionInitial =new google.maps.LatLng();
     var marker = new google.maps.Marker();
+    //var marker1 = new google.maps.Marker(); 
+    //var marker2 = new google.maps.Marker();
+    //var marker3 = new google.maps.Marker();
+    //var marker1_LatLng =new google.maps.LatLng($Evenement1.lat,$Evenement1.lng);
+    var marker2_LatLng =new google.maps.LatLng($Evenement2.lat,$Evenement2.lng);
+    var marker3_LatLng =new google.maps.LatLng($Evenement3.lat,$Evenement3.lng);
     
     var mapOptions={
           zoom: $zoom,
@@ -60,17 +76,11 @@ function indexHTML(){
     
     var map = new google.maps.Map(document.getElementById('map'),mapOptions);
      
- 
-            
 			
-                    // --- Coordonnées GPS des marker a visualiser sur la carte ---	
+                  	
     
-    var locations = [
-      ['marker 1', 48.858530, 2.3471150, 4],
-      ['marker 2',48.858595, 2.347100, 5],
-      ['marker 3',58540, 2.34720, , 3]
-      
-    ]; 
+    
+                    // 
     
    
 </script>

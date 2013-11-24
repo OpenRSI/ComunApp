@@ -1,10 +1,15 @@
   
   function main(){
+  
     document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
+     
+      
     if ((newLongitude != $longitude) || (newLongitude != $longitude)){      
       updateGpsPosition();
-    }    
+    } 
+      
+    
   }
     
   function onDeviceReady() {
@@ -39,8 +44,6 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-     
-       
          
        if (position.coords.accuracy < 100){
            
@@ -48,16 +51,17 @@
                 recenterMap(newLatitude,newLongitude);
        }
           afficheMarker(newLatitude,newLongitude);
-          $infos=getCommune( newLatitude, newLongitude);
+         $infos=getCommune( newLatitude, newLongitude);
            
       }
-       
-       afficheInfo($infos);  
+      
+      afficheInfo($infos);  
        
    }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
+    
      
-   infoBulle();
-           
+     
+     
  }      
          
 /*
@@ -82,6 +86,8 @@ function afficheMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
+   createInfoWindow();
+      
 }
 
 /*
@@ -140,9 +146,50 @@ function afficheMarker($lat,$lng) {
   marker.setMap(map);
 } 
   
-
+/*
+* afficher infobulle sur la carte
+*/
  function infoBulle(){  
     var infobulle = new google.maps.InfoWindow({content: 'vous êtes ici'}); 
     infobulle.open(map, marker);      
 }
    
+
+function createInfoWindow(){
+    
+   var TabOjectWindows = new Array;
+    
+   markerTest = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng) ;
+    //TabOjectWindws[0] =markerTest;
+    //TabOjectWindows0].
+    
+   markerTest.makerID.setPosition(markerTest.marker_LatLng);
+   markerTest.makerID.setMap(map);
+    markerTest.makerID.setVisible(false);
+   markerTest.infoWindowsID = new google.maps.InfoWindow({content:$Evenement1.content }); 
+   markerTest.infoWindowsID.open(map, markerTest.makerID);
+    
+    /*
+   marker2.setPosition(marker2_LatLng);
+   marker2.setMap(map);
+   marker2.setVisible(false);
+   var infoWindows2 = new google.maps.InfoWindow({content:$Envenement2.content }); 
+   infoWindows2.open(map, marker2);
+    
+   marker3.setPosition(marker3_LatLng);
+   marker3.setMap(map);
+   marker3.se/ google.maps.InfoWindow({ctVisible(false);  
+   var infoWindows3 = new google.maps.InfoWindow({content:$Envenement3.content }); 
+   infoWindows3.open(map, marker3);
+    
+   }is.makerID= new google.maps.Marker();
+      this.infoWindowsID= new google.maps.InfoWindow();
+  */
+   }
+ 
+function Oject_Windows(makerID,infoWindowsID,lat,lng) {
+      this.makerID= new google.maps.Marker();
+      this.infoWindowsID= new google.maps.InfoWindow();
+      this.marker_LatLng =new google.maps.LatLng(lat,lng);
+    }
+  

@@ -157,21 +157,21 @@ function afficheMarker($lat,$lng) {
 
 function createInfoWindow(){
     
-   var TabOjectWindows = new Array;
-   TabOjectWindows[0] = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
-   TabOjectWindows[1] = new Oject_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
+   var TabObjectWindows = new Array;
+   TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
+   TabObjectWindows[1] = new Object_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
     
-   for (var i=0;i<TabOjectWindows.length;i++){
-      TabOjectWindows[i].makerID.setPosition( TabOjectWindows[i].marker_LatLng);
-      TabOjectWindows[i].makerID.setMap(map);
-      TabOjectWindows[i].makerID.setVisible(false);
-      TabOjectWindows[i].infoWindowsID.contenu; 
-      TabOjectWindows[i].infoWindowsID.open(map,  TabOjectWindows[i].makerID);
+   for (var i=0;i<TabObjectWindows.length;i++){
+      TabObjectWindows[i].makerID.setPosition( TabObjectWindows[i].marker_LatLng);
+      TabObjectWindows[i].makerID.setMap(map);
+      TabObjectWindows[i].makerID.setVisible(false);
+      TabObjectWindows[i].infoWindowsID.contenu; 
+      TabObjectWindows[i].infoWindowsID.open(map,  TabObjectWindows[i].makerID);
    
    } 
 }
  
-function Oject_Windows(makerID,infoWindowsID,lat,lng,contenu) {
+function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
       this.makerID= new google.maps.Marker();
       this.infoWindowsID = new google.maps.InfoWindow({content:contenu });
       this.marker_LatLng = new google.maps.LatLng(lat,lng);

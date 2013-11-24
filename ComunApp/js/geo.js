@@ -158,7 +158,7 @@ function afficheMarker($lat,$lng) {
 function createInfoWindow(){
     
    var TabOjectWindows = new Array;
-   TabOjectWindows[0] =  markerTest = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
+   TabOjectWindows[0] = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
    TabOjectWindows[1] = new Oject_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
     
    for (var i=0;i<TabOjectWindows.length;i++){

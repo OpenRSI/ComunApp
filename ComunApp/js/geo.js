@@ -135,7 +135,7 @@ function afficheContour(){
 
 
 /*
-* afficher marker sur la carte
+* afficher marker "icon bleu" sur la carte
 */
 function afficheMarker($lat,$lng) {
   var myPosition =new google.maps.LatLng($lat,$lng);
@@ -158,38 +158,22 @@ function afficheMarker($lat,$lng) {
 function createInfoWindow(){
     
    var TabOjectWindows = new Array;
+   TabOjectWindows[0] =  markerTest = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
+   TabOjectWindows[1] = new Oject_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
     
-   markerTest = new Oject_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng) ;
-    //TabOjectWindws[0] =markerTest;
-    //TabOjectWindows0].
-    
-   markerTest.makerID.setPosition(markerTest.marker_LatLng);
-   markerTest.makerID.setMap(map);
-    markerTest.makerID.setVisible(false);
-   markerTest.infoWindowsID = new google.maps.InfoWindow({content:$Evenement1.content }); 
-   markerTest.infoWindowsID.open(map, markerTest.makerID);
-    
-    /*
-   marker2.setPosition(marker2_LatLng);
-   marker2.setMap(map);
-   marker2.setVisible(false);
-   var infoWindows2 = new google.maps.InfoWindow({content:$Envenement2.content }); 
-   infoWindows2.open(map, marker2);
-    
-   marker3.setPosition(marker3_LatLng);
-   marker3.setMap(map);
-   marker3.se/ google.maps.InfoWindow({ctVisible(false);  
-   var infoWindows3 = new google.maps.InfoWindow({content:$Envenement3.content }); 
-   infoWindows3.open(map, marker3);
-    
-   }is.makerID= new google.maps.Marker();
-      this.infoWindowsID= new google.maps.InfoWindow();
-  */
-   }
+   for (var i=0;i<TabOjectWindows.length;i++){
+      TabOjectWindows[i].makerID.setPosition( TabOjectWindows[i].marker_LatLng);
+      TabOjectWindows[i].makerID.setMap(map);
+      TabOjectWindows[i].makerID.setVisible(false);
+      TabOjectWindows[i].infoWindowsID.contenu; 
+      TabOjectWindows[i].infoWindowsID.open(map,  TabOjectWindows[i].makerID);
+   
+   } 
+}
  
-function Oject_Windows(makerID,infoWindowsID,lat,lng) {
+function Oject_Windows(makerID,infoWindowsID,lat,lng,contenu) {
       this.makerID= new google.maps.Marker();
-      this.infoWindowsID= new google.maps.InfoWindow();
-      this.marker_LatLng =new google.maps.LatLng(lat,lng);
+      this.infoWindowsID = new google.maps.InfoWindow({content:contenu });
+      this.marker_LatLng = new google.maps.LatLng(lat,lng);
     }
   

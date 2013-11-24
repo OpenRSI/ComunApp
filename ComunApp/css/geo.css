@@ -13,11 +13,11 @@
 color :black ;
     
  position: relative;
-float: right;
+float: top;
 opacity:0.6;
-background-color : white;
-  width : 200px;
-  height :100px;
+background-color : yellow;
+  width : 100%;
+  height :40px;
 z-index: 100;
 
 }		 

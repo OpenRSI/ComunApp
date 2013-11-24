@@ -17,6 +17,8 @@
   function onSuccess(position) {
     $latitude = position.coords.latitude; 
     $longitude = position.coords.longitude;
+    $latitudeInit = $latitude;
+    $longitudeInit =  $longitude ;  
     afficheMap($latitude, $longitude);
     afficheMarker($latitude, $longitude);
   }
@@ -37,14 +39,24 @@
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
       $infos=getCommune( newLatitude, newLongitude);
-       afficheInfo($infos);  
+       
+         
        if (position.coords.accuracy < 100){
-        
+           
+           if ($latitudeInit-newLatitude > 0.000100){
+                recenterMap(newLatitude,newLongitude);
+       }
           afficheMarker(newLatitude,newLongitude);
+        
+           
       }
+       
+       afficheInfo($infos);  
+        
    }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
      
-      
+  
+           
  }      
          
 /*
@@ -70,6 +82,16 @@ function afficheMap(lat,lng){
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
 }
+
+/*
+* recentre la carte
+*/     
+function recenterMap(lat,lng){
+  var position = new google.maps.LatLng(lat,lng);
+ 
+   map.panTo(position); 
+}
+
 
 /*
 * afficher marker sur la carte
@@ -104,8 +126,7 @@ function afficheContour(){
   
     if (status == google.maps.GeocoderStatus.OK) {
       if (results[0]) {
-		commune = results[0].formatted_address;
-        
+		commune = results[2].formatted_address;
       } else {
 		commune='none';
       }

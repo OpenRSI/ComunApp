@@ -21,7 +21,8 @@
     $longitudeInit =  $longitude ;  
     afficheMap($latitude, $longitude);
     afficheMarker($latitude, $longitude);
-  }
+    
+  } 
   
   /*
   *   onError Callback receives a PositionError object
@@ -38,7 +39,7 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-      $infos=getCommune( newLatitude, newLongitude);
+     
        
          
        if (position.coords.accuracy < 100){
@@ -47,15 +48,15 @@
                 recenterMap(newLatitude,newLongitude);
        }
           afficheMarker(newLatitude,newLongitude);
-        
+          $infos=getCommune( newLatitude, newLongitude);
            
       }
        
        afficheInfo($infos);  
-        
+       
    }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
      
-  
+   infoBulle();
            
  }      
          
@@ -93,18 +94,7 @@ function recenterMap(lat,lng){
 }
 
 
-/*
-* afficher marker sur la carte
-*/
-function afficheMarker($lat,$lng) {
-  var myPosition =new google.maps.LatLng($lat,$lng);
-  var  iconIci = new google.maps.MarkerImage('img/icon1.png');
-    
-  marker.setPosition(myPosition);
-   marker.setIcon(iconIci); 
-  marker.setMap(map);
-} 
-  
+
 /*
 *    Affiche le contour en fonction du fichier situer sur un serveur
 */
@@ -136,4 +126,23 @@ function afficheContour(){
     });
  return commune;
 }
+
+
+/*
+* afficher marker sur la carte
+*/
+function afficheMarker($lat,$lng) {
+  var myPosition =new google.maps.LatLng($lat,$lng);
+  var  iconIci = new google.maps.MarkerImage('img/icon1.png');
     
+  marker.setPosition(myPosition);
+  marker.setIcon(iconIci); 
+  marker.setMap(map);
+} 
+  
+
+ function infoBulle(){  
+    var infobulle = new google.maps.InfoWindow({content: 'vous êtes ici'}); 
+    infobulle.open(map, marker);      
+}
+   

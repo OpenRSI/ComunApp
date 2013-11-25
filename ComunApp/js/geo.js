@@ -177,3 +177,30 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
       this.marker_LatLng = new google.maps.LatLng(lat,lng);
     }
   
+
+function request(callback) {
+ 
+   var xhr   = getXMLHttpRequest();   
+   xhr.onreadystatechange = function() {
+       if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+         callback(xhr.responseText);
+       }
+   };    
+    xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
+    /*xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("login=rene&pwd=password");*/
+}
+
+function readData(sData) {
+   $infos=sData;
+    afficheInfo($infos);  
+  
+}
+     
+     
+  /* 
+  xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
+ xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+ xhr.send("login=rene&pwd=password");
+    */  
+    

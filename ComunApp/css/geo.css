@@ -14,9 +14,9 @@ color :black ;
     
  position: relative;
 float: top;
-opacity:0.6;
-background-color : yellow;
-  width : 100%;
+opacity:0.9;
+background-color : white;
+  width : 90%;
   height :40px;
 z-index: 100;
 

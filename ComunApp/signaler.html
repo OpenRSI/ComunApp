@@ -63,24 +63,35 @@
         						img = new Image();
         						img.src = capturedFiles[0].fullPath;
         						img.onload = function(){
-           							 imageWidth = img.width;
+
+                                    
+                                    	imageWidth = img.width;
             						    imageHeight = img.height;
-            							var canvas11 = document.getElementById('previewImg');
+            							
+                                    	var canvas = document.getElementById('previewImg');
                                     	
-                                        imageHeight = imageHeight * canvas11.width / imageWidth;
-                                        imageWidth = canvas11.width;
-                                    	
-                                        canvas11.Width = imageWidth;
-                                        canvas11.height = imageHeight;
+                                    	canvas.style.display="none";
                                     
-                                    	var ctx=canvas11.getContext("2d");
-                                        ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
-                                  
-                                    	canvas11.style.display="none";
-                                    	canvas11.style.display="block";
+                                        imageHeight = imageHeight * canvas.width / imageWidth;
+                                        imageWidth = canvas.width;
+                                    	
+                                        canvas.Width = imageWidth;
+                                        canvas.height = imageHeight;
+                                                   	
+
+                                    
+                                    
+                                    	var ctx=canvas.getContext("2d");
+                                    	
+
+                                    	ctx.rotate(Math.PI / 90);
+                                       
+                                    	ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+
+                                                                     
+                                    	canvas.style.display="block";
                                  
-                                    
-                                    
+                                                                        
        							}
                         
     				}

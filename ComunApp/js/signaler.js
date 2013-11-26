@@ -57,9 +57,13 @@ $(document).bind('pageinit', function() {
     //déclarations de variable du script
     var code_postal;
     var canvas = $("#previewImg");
-    //var ctx = canvas[0].getContext('2d');
     var imageWidth;
     var imageHeight;
+    var cursorX, cursorY;
+    var color = "ff0000";
+	var painting = false;
+	var started = false;
+	var width_brush = 2;
     
      
     //click sur le bouton Uuid
@@ -90,19 +94,23 @@ $(document).bind('pageinit', function() {
     
     function captureSuccess(capturedFiles) {    
         //en cours de débuggage ne pas toucher
-        
+        var ctx = canvas[0].getContext('2d');
         img = new Image();
         img.src = capturedFiles[0].fullPath;
         img.onload = function(){
+		    ctx.clearRect(0,0, canvas.width(), canvas.height());
             imageWidth = img.width;
             imageHeight = img.height;
-            img.height = imageHeight * canvas.width() / imageWidth;
-            img.width = canvas.width();
+            imageHeight = imageHeight * canvas.width() / imageWidth;
+            imageWidth = canvas.width();
+            img.height = imageHeight;
+            img.width = imageWidth;
             canvas.width(img.width);
             canvas.height(img.height);
             // Ajout Boris 25/11 --(Rotation 90°) ------------------------------->
-            //ctx.translate(imageHeight,0);
-            //ctx.rotate(90*Math.PI/180);
+            ctx.translate(imageHeight, 0);
+            alert(imageWidth + ", " + imageHeight)
+            ctx.rotate(90*Math.PI/180);
             // --------------------------------------------->
             ctx.drawImage(img, 0, 0, canvas.width(), canvas.height());
         }
@@ -111,6 +119,63 @@ $(document).bind('pageinit', function() {
         var msg = 'La prise de photo à été annulée. ' + error.code;
         navigator.notification.alert(msg, null, 'Annuler !');
     }
+    
+    
+    canvas.mousedown(function(e) {
+		painting = true;
+		
+		// Coordonnées de la souris :
+		cursorX = (e.pageX - this.offsetLeft);
+		cursorY = (e.pageY - this.offsetTop);
+	});
+	
+	// Relachement du Click sur tout le document, j'arrête de dessiner :
+	$(this).mouseup(function() {
+		painting = false;
+		started = false;
+	});
+	
+	// Mouvement de la souris sur le canvas :
+	canvas.mousemove(function(e) {
+		// Si je suis en train de dessiner (click souris enfoncé) :
+		if (painting) {
+			// Set Coordonnées de la souris :
+			cursorX = (e.pageX - this.offsetLeft); // 10 = décalage du curseur
+			cursorY = (e.pageY - this.offsetTop);
+			
+			// Dessine une ligne :
+			drawLine();
+		}
+	});
+    
+
+    function drawLine() {
+		// Si c'est le début, j'initialise
+        var ctx = canvas[0].getContext('2d');
+        ctx.lineJoin = 'round';
+	    ctx.lineCap = 'round';
+		if (!started) {
+			// Je place mon curseur pour la première fois :
+			ctx.beginPath();
+			ctx.moveTo(cursorX, cursorY);
+			started = true;
+		}
+		// Sinon je dessine
+		else {
+			ctx.lineTo(cursorX, cursorY);
+			ctx.strokeStyle = color;
+			ctx.lineWidth = width_brush;
+			ctx.stroke();
+		}
+	}
+    
+
+    $("#btnClear").bind( "click", function() {
+        var ctx = canvas[0].getContext('2d');
+		ctx.clearRect(0,0, canvas.width(), canvas.height());
+        ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+	});
+    
     
     
     

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectGuid>1524f07d-021c-475e-ac6f-03043ca45549</ProjectGuid>
     <ProjectTypeGuids>{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}</ProjectTypeGuids>
-    <AppIdentifier>fr.openrsi.ComuApp</AppIdentifier>
+    <AppIdentifier>fr.openrsi.ComunApp</AppIdentifier>
     <ProjectName>ComunApp</ProjectName>
     <IsRunnable>true</IsRunnable>
     <FrameworkVersion>3.0.0</FrameworkVersion>

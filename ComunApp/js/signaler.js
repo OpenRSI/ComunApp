@@ -57,10 +57,11 @@ $(document).bind('pageinit', function() {
     //déclarations de variable du script
     var code_postal;
     var canvas = $("#previewImg");
-    var ctx = canvas[0].getContext('2d');
+    //var ctx = canvas[0].getContext('2d');
     var imageWidth;
     var imageHeight;
     
+     
     //click sur le bouton Uuid
     $("#btnUuid").bind( "click", function() {
         
@@ -110,4 +111,22 @@ $(document).bind('pageinit', function() {
         var msg = 'La prise de photo à été annulée. ' + error.code;
         navigator.notification.alert(msg, null, 'Annuler !');
     }
+    
+    
+    
+    //----Gestion des boutons Menu--------------------------->
+    
+    //----Menu Header ------------->
+    
+    $("#MENUHS").bind("click",function(){
+        window.location = "index.html";
+    });
+    
+    
+    //------------------------------------------------------>
+    
+    
+    
+    
+    
 });

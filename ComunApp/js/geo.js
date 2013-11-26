@@ -198,10 +198,10 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
 }
 
 function readData(sData) {
- 	 $infos=sData;
+ 	
     $Evenement1.content=sData;
     afficheInfo($infos);
-    
+   afficheMap($latitude,$longitude);
 }
    
      

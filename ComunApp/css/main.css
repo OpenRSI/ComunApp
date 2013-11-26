@@ -90,13 +90,19 @@ display:inline;
 	padding-bottom:2%;
 }
 
-.canvas1{
-border: 5px solid #fff;
 
-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+#kenburns{
+	border: 5px solid #fff;
+    
+	width:90%;
+ 
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
             -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
 
+    
+    background-color: blue;
 }
+
 
 
 

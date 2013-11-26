@@ -178,29 +178,53 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
     }
   
 
-function request(callback) {
+
  
-   var xhr   = getXMLHttpRequest();   
-   xhr.onreadystatechange = function() {
-       if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-         callback(xhr.responseText);
-       }
-   };    
-    xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
-    /*xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login=rene&pwd=password");*/
+  function request(callback) {
+    var xhr = new XMLHttpRequest();
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+            callback(xhr.responseText);
+        }
+    };
+
+  
+    var named = $latitude+' '+$longitude;
+	
+    
+    xhr.open("GET", "http://sylnebert.openrsi.fr/ajax.php?named= " + named);
+    xhr.send(null);
 }
 
 function readData(sData) {
-   $infos=sData;
-    afficheInfo($infos);  
-  
+ 	 $infos=sData;
+    $Evenement1.content=sData;
+    afficheInfo($infos);
+    
 }
+   
      
      
   /* 
   xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
  xhr.send("login=rene&pwd=password");
-    */  
+    
+     xhr.open("GET", "http://sylnebert.openrsi.fr/test.php", true);
+    /*xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("login=rene&pwd=password")
+function readData(sData) {
+   $infos=sData;
+    afficheInfo($infos);  
+  
+} xhr.send(null);
+    
+    */
+    
+
+
+
+    
+    
     

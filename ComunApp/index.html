@@ -70,15 +70,12 @@
             //----Menu Boutons ------------->
                 
             $("#SIGNALP").bind("click",function(){
-                                 
-                      
                     window.location = "signaler.html";
-                
-                
-
-                
             });
                 
+            $("#TWITTERP").bind("click",function(){
+                    window.location = "twitter.html";
+            });
                 
                 
                 
@@ -134,20 +131,24 @@ window.location = "geo.html";
     <div id="conteneur" data-role="content">	
 	
 		
+        
+        
+              
+        
         <center>
         
-            <div class="colonne"><div class="bouton"><a href="" onclick="geo()"><img src="img/pratique.png" height="80" width="80"/></a></div></div>
-            <div class="colonne"><div class="bouton"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="80" width="80"/></a></div></div>
-            <div class="colonne"><div class="bouton"><img src="img/mairie.png" height="80" width="80"/></div></div>
+            <div class="colonne"><div class="bouton"><a href="" onclick="geo()"><img src="img/news.png" height="80" width="80"/></a></div></div>
+            <div class="colonne"><div id="TWITTERP" class="bouton"><img src="img/sortir.png" height="80" width="80"/></div></div>
+            <div class="colonne"><div class="bouton"><img src="img/pratique.png" height="80" width="80"/></div></div>
 	
             
             <div class="colonne" style="padding-top:0%;">René</div>
-            <div class="colonne" style="padding-top:0%;">Pratique</div>
-            <div class="colonne" style="padding-top:0%;">Services</div>
+            <div class="colonne" style="padding-top:0%;">Boris</div>
+            <div class="colonne" style="padding-top:0%;">Guide</div>
  
 	    </center>	
         
-        
+
         
        
         <center>

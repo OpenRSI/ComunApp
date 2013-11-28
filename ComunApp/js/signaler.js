@@ -104,22 +104,18 @@ $(document).bind('pageinit', function() {
 		    context.clearRect(0,0, canvas.width(), canvas.height());
             imageWidth = img.width;
             imageHeight = img.height;
-            context.translate(canvas.width/2, canvas.height/2);
+            /*var ratio = imageWidth/imageHeight;
+            context.translate(canvas.width()*ratio, 0);
             context.rotate(90*Math.PI/180);
-            imageHeight = imageHeight * canvas.width() / imageWidth;
-            imageWidth = canvas.width();
-            img.height = imageHeight;
-            img.width = imageWidth;
-            canvas.width(img.width);
-            canvas.height(img.height);
-            // Ajout Boris 25/11 --(Rotation 90°) ------------------------------->
-            //context.translate(imageHeight, 0);
-            //alert(imageWidth + ", " + imageHeight)
+            canvas.height(canvas.width()*ratio);
+            context.drawImage(img, 0, 0, imageWidth, imageHeight, 0, 0, canvas.width(), canvas.height());*/
+            var ratio = imageWidth/imageHeight;
+            alert(ratio);
+            canvas.width(imageWidth);
+            canvas.height(canvas.width()*ratio);
+            //context.translate(canvas.width()*ratio, 0);
             //context.rotate(90*Math.PI/180);
-            // --------------------------------------------->
-            context.drawImage(img, -imageWidth / 2, -imageHeight / 2, imageWidth, imageHeight);
-            context.rotate(-90*Math.PI/180);
-            context.translate(-canvas.width/2, -canvas.height/2);
+            context.drawImage(img, 0, 0, canvas.width(), canvas.height());
         }
     }
     function captureError(error) {

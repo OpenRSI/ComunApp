@@ -29,8 +29,8 @@ canvas {
 
 
 /*----- Modification Boris 23/11---------------*/
-canvas {
-
+#previewImg {
     width: 90%;
+    height: 200px;
     background-color: blue;
 }

@@ -64,6 +64,8 @@ $(document).bind('pageinit', function() {
 	var painting = false;
 	var started = false;
 	var width_brush = 2;
+    var img;
+    //var context = canvas[0].getContext('2d');
     
      
     //click sur le bouton Uuid
@@ -94,13 +96,16 @@ $(document).bind('pageinit', function() {
     
     function captureSuccess(capturedFiles) {    
         //en cours de débuggage ne pas toucher
-        var ctx = canvas[0].getContext('2d');
+        var context = canvas[0].getContext('2d');
         img = new Image();
         img.src = capturedFiles[0].fullPath;
         img.onload = function(){
-		    ctx.clearRect(0,0, canvas.width(), canvas.height());
+            context.setTransform(1,0,0,1,0,0);
+		    context.clearRect(0,0, canvas.width(), canvas.height());
             imageWidth = img.width;
             imageHeight = img.height;
+            context.translate(canvas.width/2, canvas.height/2);
+            context.rotate(90*Math.PI/180);
             imageHeight = imageHeight * canvas.width() / imageWidth;
             imageWidth = canvas.width();
             img.height = imageHeight;
@@ -108,11 +113,13 @@ $(document).bind('pageinit', function() {
             canvas.width(img.width);
             canvas.height(img.height);
             // Ajout Boris 25/11 --(Rotation 90°) ------------------------------->
-            ctx.translate(imageHeight, 0);
-            alert(imageWidth + ", " + imageHeight)
-            ctx.rotate(90*Math.PI/180);
+            //context.translate(imageHeight, 0);
+            //alert(imageWidth + ", " + imageHeight)
+            //context.rotate(90*Math.PI/180);
             // --------------------------------------------->
-            ctx.drawImage(img, 0, 0, canvas.width(), canvas.height());
+            context.drawImage(img, -imageWidth / 2, -imageHeight / 2, imageWidth, imageHeight);
+            context.rotate(-90*Math.PI/180);
+            context.translate(-canvas.width/2, -canvas.height/2);
         }
     }
     function captureError(error) {
@@ -151,29 +158,27 @@ $(document).bind('pageinit', function() {
 
     function drawLine() {
 		// Si c'est le début, j'initialise
-        var ctx = canvas[0].getContext('2d');
-        ctx.lineJoin = 'round';
-	    ctx.lineCap = 'round';
+        context.lineJoin = 'round';
+	    context.lineCap = 'round';
 		if (!started) {
 			// Je place mon curseur pour la première fois :
-			ctx.beginPath();
-			ctx.moveTo(cursorX, cursorY);
+			context.beginPath();
+			context.moveTo(cursorX, cursorY);
 			started = true;
 		}
 		// Sinon je dessine
 		else {
-			ctx.lineTo(cursorX, cursorY);
-			ctx.strokeStyle = color;
-			ctx.lineWidth = width_brush;
-			ctx.stroke();
+			context.lineTo(cursorX, cursorY);
+			context.strokeStyle = color;
+			context.lineWidth = width_brush;
+			context.stroke();
 		}
 	}
     
 
     $("#btnClear").bind( "click", function() {
-        var ctx = canvas[0].getContext('2d');
-		ctx.clearRect(0,0, canvas.width(), canvas.height());
-        ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+		context.clearRect(0,0, canvas.width(), canvas.height());
+        context.drawImage(img, 0, 0, imageWidth, imageHeight);
 	});
     
     

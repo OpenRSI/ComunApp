@@ -102,13 +102,18 @@ $(document).bind('pageinit', function() {
         img.onload = function(){
             context.setTransform(1,0,0,1,0,0);
 		    context.clearRect(0,0, canvas.width(), canvas.height());
-            imageWidth = img.width;
-            imageHeight = img.height;
-            var ratio = imageWidth/imageHeight;
-            context.translate(canvas.width()*ratio, 0);
-            context.rotate(90*Math.PI/180);
+            var maxWidth = canvas.width();
+            var ratio = 0;
+            var width = img.width;
+            var height = img.height;
+            ratio = height / width;
+            img.width = maxWidth;
+            img.height = maxWidth * ratio;
             canvas.height(canvas.width()*ratio);
-            context.drawImage(img, 0, 0, img.width, img.height, 0, canvas.height()/2-50, canvas.height()/2, canvas.width());
+            context.translate(img.height, 0);
+            context.rotate(90*Math.PI/180);
+            context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.height(), canvas.width());
+                      
         }
     }
     function captureError(error) {

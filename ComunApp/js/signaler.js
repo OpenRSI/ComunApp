@@ -104,18 +104,11 @@ $(document).bind('pageinit', function() {
 		    context.clearRect(0,0, canvas.width(), canvas.height());
             imageWidth = img.width;
             imageHeight = img.height;
-            /*var ratio = imageWidth/imageHeight;
+            var ratio = imageWidth/imageHeight;
             context.translate(canvas.width()*ratio, 0);
             context.rotate(90*Math.PI/180);
             canvas.height(canvas.width()*ratio);
-            context.drawImage(img, 0, 0, imageWidth, imageHeight, 0, 0, canvas.width(), canvas.height());*/
-            var ratio = imageWidth/imageHeight;
-            alert(ratio);
-            canvas.width(imageWidth);
-            canvas.height(canvas.width()*ratio);
-            //context.translate(canvas.width()*ratio, 0);
-            //context.rotate(90*Math.PI/180);
-            context.drawImage(img, 0, 0, canvas.width(), canvas.height());
+            context.drawImage(img, 0, 0, img.width, img.height, 0, canvas.height()/2-50, canvas.height()/2, canvas.width());
         }
     }
     function captureError(error) {

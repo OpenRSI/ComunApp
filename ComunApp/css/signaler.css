@@ -30,7 +30,7 @@ canvas {
 
 /*----- Modification Boris 23/11---------------*/
 #previewImg {
-    width: 90%;
+    width: 400px;
     height: 200px;
     background-color: blue;
 }

@@ -81,7 +81,7 @@ $(document).bind('pageinit', function() {
         }, function(){
             
             //affichage des érreurs
-        });
+        }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
     });
     
     

@@ -56,15 +56,16 @@ $(document).bind('pageinit', function() {
     
     //déclarations de variable du script
     var code_postal;
-    var canvas = $("#previewImg");
-    var imageWidth;
-    var imageHeight;
-    var cursorX, cursorY;
-    var color = "ff0000";
-	var painting = false;
-	var started = false;
-	var width_brush = 2;
-    var img;
+    //var canvas = $("#previewImg");
+    var preview = $("#imgcapture");
+    //var imageWidth;
+    //var imageHeight;
+    //var cursorX, cursorY;
+    //var color = "ff0000";
+	//var painting = false;
+	//var started = false;
+	//var width_brush = 2;
+    //var img;
     //var context = canvas[0].getContext('2d');
     
      
@@ -90,14 +91,21 @@ $(document).bind('pageinit', function() {
     //click sur le bouton capture
     $("#btnCapture").bind( "click", function() {
         //utilisation de l'appareil photo
-        navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
+        //navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
+        navigator.camera.getPicture(captureSuccess, captureError, {
+            quality: 50,
+            targetWidth: 640,
+            targetHeight: 640,
+            destinationType: Camera.DestinationType.FILE_URI,
+            correctOrientation: true
+        });
         
     });
     
-    function captureSuccess(capturedFiles) {    
+    function captureSuccess(imageURI) {
         //en cours de débuggage ne pas toucher
-        var context = canvas[0].getContext('2d');
-        img = new Image();
+        //context = canvas[0].getContext('2d');
+        /*img = new Image();
         img.src = capturedFiles[0].fullPath;
         img.onload = function(){
             context.setTransform(1,0,0,1,0,0);
@@ -114,7 +122,10 @@ $(document).bind('pageinit', function() {
             context.rotate(90*Math.PI/180);
             context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.height(), canvas.width());
                       
-        }
+        }*/
+        preview.attr('src', imageURI).on("load", function() {
+            alert(preview.width() + ", " + preview.height());
+        });
     }
     function captureError(error) {
         var msg = 'La prise de photo à été annulée. ' + error.code;
@@ -122,7 +133,7 @@ $(document).bind('pageinit', function() {
     }
     
     
-    canvas.mousedown(function(e) {
+    /*canvas.mousedown(function(e) {
 		painting = true;
 		
 		// Coordonnées de la souris :
@@ -173,7 +184,7 @@ $(document).bind('pageinit', function() {
     $("#btnClear").bind( "click", function() {
 		context.clearRect(0,0, canvas.width(), canvas.height());
         context.drawImage(img, 0, 0, imageWidth, imageHeight);
-	});
+	});*/
     
     
     

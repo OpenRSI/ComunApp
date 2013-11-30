@@ -33,4 +33,10 @@ canvas {
     width: 400px;
     height: 200px;
     background-color: blue;
+    max-width: 95%;
+}
+
+#imgcapture {
+    max-width: 100%;
+	height: auto;
 }

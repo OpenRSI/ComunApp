@@ -74,6 +74,11 @@ $(document).bind('pageinit', function() {
         }, function(){
             
             //affichage des érreurs
+            var entrercode = prompt('Localisation impossible ! Veuiller entrer le code postal de la commune :');
+            
+            code_postal = entrercode;
+            alert(code_postal);
+            
         }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
     });
     

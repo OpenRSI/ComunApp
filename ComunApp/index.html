@@ -95,7 +95,7 @@ window.location = "geo.html";
    
 </script>
     http://comunapp.openrsi.fr/rss/ecrit_cache.php
-<script>
+<script type="text/javascript">
     
     var cacherss = Fichier('http://comunapp.openrsi.fr/rss/cache_local/cache.txt');
     window.localStorage.setItem( 'cache', cacherss);    
@@ -183,7 +183,7 @@ window.location = "geo.html";
             
                 <span>
                     <nobr>
-                        <script>
+                        <script type="text/javascript">
                            Contenu = window.localStorage.getItem('cache');
                            document.write(Contenu);
                         </script>

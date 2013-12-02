@@ -56,7 +56,16 @@ $(document).bind('pageinit', function() {
     
     //déclarations de variable du script
     var code_postal;
-    var preview = $("#imgcapture");
+    var canvas = $("#previewImg");
+    var imageWidth;
+    var imageHeight;
+    var cursorX, cursorY;
+    var color = "ff0000";
+	var painting = false;
+	var started = false;
+	var width_brush = 2;
+    var img;
+    //var context = canvas[0].getContext('2d');
     
      
     //click sur le bouton Uuid
@@ -74,11 +83,6 @@ $(document).bind('pageinit', function() {
         }, function(){
             
             //affichage des érreurs
-            var entrercode = prompt('Localisation impossible ! Veuiller entrer le code postal de la commune :');
-            
-            code_postal = entrercode;
-            alert(code_postal);
-            
         }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
     });
     
@@ -86,25 +90,90 @@ $(document).bind('pageinit', function() {
     //click sur le bouton capture
     $("#btnCapture").bind( "click", function() {
         //utilisation de l'appareil photo
-        navigator.camera.getPicture(captureSuccess, captureError, {
-            quality: 50,
-            targetWidth: 640,
-            targetHeight: 640,
-            destinationType: Camera.DestinationType.FILE_URI,
-            correctOrientation: true
-        });
+        navigator.device.capture.captureImage(captureSuccess, captureError, {limit:1});
         
     });
     
-    function captureSuccess(imageURI) {
-        preview.attr('src', imageURI).on("load", function() {
-            alert(preview.width() + ", " + preview.height());
-        });
+    function captureSuccess(capturedFiles) {    
+        //en cours de débuggage ne pas toucher
+        var context = canvas[0].getContext('2d');
+        img = new Image();
+        img.src = capturedFiles[0].fullPath;
+        img.onload = function(){
+            context.setTransform(1,0,0,1,0,0);
+		    context.clearRect(0,0, canvas.width(), canvas.height());
+            var maxWidth = canvas.width();
+            var ratio = 0;
+            var width = img.width;
+            var height = img.height;
+            ratio = height / width;
+            img.width = maxWidth;
+            img.height = maxWidth * ratio;
+            canvas.height(canvas.width()*ratio);
+            context.translate(img.height, 0);
+            context.rotate(90*Math.PI/180);
+            context.drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.height(), canvas.width());
+                      
+        }
     }
     function captureError(error) {
         var msg = 'La prise de photo à été annulée. ' + error.code;
         navigator.notification.alert(msg, null, 'Annuler !');
     }
+    
+    
+    canvas.mousedown(function(e) {
+		painting = true;
+		
+		// Coordonnées de la souris :
+		cursorX = (e.pageX - this.offsetLeft);
+		cursorY = (e.pageY - this.offsetTop);
+	});
+	
+	// Relachement du Click sur tout le document, j'arrête de dessiner :
+	$(this).mouseup(function() {
+		painting = false;
+		started = false;
+	});
+	
+	// Mouvement de la souris sur le canvas :
+	canvas.mousemove(function(e) {
+		// Si je suis en train de dessiner (click souris enfoncé) :
+		if (painting) {
+			// Set Coordonnées de la souris :
+			cursorX = (e.pageX - this.offsetLeft); // 10 = décalage du curseur
+			cursorY = (e.pageY - this.offsetTop);
+			
+			// Dessine une ligne :
+			drawLine();
+		}
+	});
+    
+
+    function drawLine() {
+		// Si c'est le début, j'initialise
+        context.lineJoin = 'round';
+	    context.lineCap = 'round';
+		if (!started) {
+			// Je place mon curseur pour la première fois :
+			context.beginPath();
+			context.moveTo(cursorX, cursorY);
+			started = true;
+		}
+		// Sinon je dessine
+		else {
+			context.lineTo(cursorX, cursorY);
+			context.strokeStyle = color;
+			context.lineWidth = width_brush;
+			context.stroke();
+		}
+	}
+    
+
+    $("#btnClear").bind( "click", function() {
+		context.clearRect(0,0, canvas.width(), canvas.height());
+        context.drawImage(img, 0, 0, imageWidth, imageHeight);
+	});
     
     
     

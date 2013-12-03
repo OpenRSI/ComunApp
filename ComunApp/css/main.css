@@ -16,14 +16,16 @@
     );
   	
 
+ 
 
-	position: relative;
+	/*position: relative;*/
 	
 }
 
 #conteneur {
 
-	
+
+
 }
 
 .spanpratique{
@@ -49,9 +51,13 @@ display:inline;
 .colonneH1 {
 	display: inline-block;
     vertical-align: top;
-    width: 12%;
+    width: 11.7%;
     float: right;
-	
+    
+    /* Ajout Boris le 21/11 */
+    position:relative;
+    
+    
 }
 
 .colonneHbis {
@@ -84,13 +90,19 @@ display:inline;
 	padding-bottom:2%;
 }
 
-.canvas1{
-border: 5px solid #fff;
 
-box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+#kenburns{
+	border: 5px solid #fff;
+    
+	width:90%;
+ 
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
             -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
 
+    
+    background-color: blue;
 }
+
 
 
 
@@ -203,17 +215,6 @@ box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
 
 }
 
-.message1{
-
-	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:18px;
-	color:black;
-
-
-}
-
-
-
 
 
 .colonnePied {
@@ -322,7 +323,7 @@ max-width:46px;
 
 
 
-.retourphotodiv {
+.retourphotodiv{
     
 	width:50%;
 

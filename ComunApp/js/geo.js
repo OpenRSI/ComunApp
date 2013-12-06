@@ -23,10 +23,8 @@
     $latitude = position.coords.latitude; 
     $longitude = position.coords.longitude;
     $latitudeInit = $latitude;
-    $longitudeInit =  $longitude ;
-    
+    $longitudeInit =  $longitude ;  
     afficheMap($latitude, $longitude);
-      
     afficheMarker($latitude, $longitude);
     
   } 
@@ -46,8 +44,7 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-       $infos=getCommune( newLatitude, newLongitude);
-             
+         
        if (position.coords.accuracy < 100){
            
            if ($latitudeInit-newLatitude > 0.000100){
@@ -60,7 +57,7 @@
       
       afficheInfo($infos);  
        
-   }, null, {enableHighAccuracy:true, maximumAge:20, timeout: 1000}); 
+   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
     
      
      
@@ -82,7 +79,6 @@ function afficheInfo($infos){
   div.textContent = $infos;
 }
 
-
 /*
 *  Creer une carte avec la position passé en parametre  
 */
@@ -90,14 +86,12 @@ function afficheMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
- createInfoWindow();
- afficheContour();   
- //map.panTO(position);
-    
-    }
+   createInfoWindow();
+      
+}
 
 /*
-*   Re-centrer la carte 
+* recentre la carte
 */     
 function recenterMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
@@ -111,7 +105,7 @@ function recenterMap(lat,lng){
 *    Affiche le contour en fonction du fichier situer sur un serveur
 */
 function afficheContour(){
-  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/dep.kml' });
+  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/cta.kml' });
   ctaLayer.setMap(map);
 }
   
@@ -140,12 +134,11 @@ function afficheContour(){
 }
 
 
-
 /*
 * afficher marker "icon bleu" sur la carte
 */
-function afficheMarker(lat,lng) {
-  var myPosition =new google.maps.LatLng(lat,lng);
+function afficheMarker($lat,$lng) {
+  var myPosition =new google.maps.LatLng($lat,$lng);
   var  iconIci = new google.maps.MarkerImage('img/icon1.png');
     
   marker.setPosition(myPosition);

@@ -91,7 +91,11 @@ display:inline;
 #kenburns{
 	border: 5px solid #fff;
     
-	width:90%;
+	/* Déforme le contenue de la photo 
+    
+    width:90%; 
+    
+    */
  
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
             -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
@@ -100,6 +104,36 @@ display:inline;
     background-color: blue;
 }
 
+
+
+
+/* CSS pour le panneau routier de la commune dans le header */
+
+
+#panneau{
+	border: 5px solid #fff;
+	width:50%;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+
+  	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+}
+
+
+#panneau1{
+	border: 5px solid #FF0000;
+ 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+    font-weight: bold;
+    background-color:#fff;
+}
+
+
+/* ---------------------------------------- */
 
 
 
@@ -368,7 +402,10 @@ max-width:46px;
 and (min-width: 200px)
 and (max-width: 560px){
     
-	
+#starC{	
+ font-size:12px;
+
+}	
 
     
 }

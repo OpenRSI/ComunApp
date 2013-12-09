@@ -120,6 +120,8 @@ display:inline;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
 
+    margin-top:1%;
+    margin-bottom:9%;
 }
 
 
@@ -128,6 +130,7 @@ display:inline;
  	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
+	font-size:24px;
     font-weight: bold;
     background-color:#fff;
 }
@@ -241,7 +244,7 @@ display:inline;
 
 .message1{
 
-	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	font-family:'Helvetica', HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:18px;
 	color:#7200AC;
 	text-shadow:1px 1px 2px gray;
@@ -385,8 +388,8 @@ max-width:46px;
 .Fontmenu{
 	
 	padding-bottom:10px;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:18px;
+    font-family:'Helvetica', 'HelveticaNeue-Light', 'HelveticaNeue', Arial, sans-serif;
+    font-size:24px;
 	color:white;
 
 }
@@ -407,6 +410,15 @@ and (max-width: 560px){
 
 }	
 
+    
+    #def{	
+ 	font-size:18px;
+	width:80%;
+	margin-top:3%;
+	padding-bottom:3%;        
+        
+	}   
+    
     
 }
 	
@@ -430,9 +442,12 @@ position: static;
 }
     
 #def{	
- font-size:18px;
-
-}   
+ 	font-size:24px;
+	width:80%;
+	margin-top:3%;
+	padding-bottom:3%;        
+        
+	}  
     
 	
 }

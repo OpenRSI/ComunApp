@@ -1,4 +1,4 @@
-/* body {
+body {
     font-family: sans-serif, Arial, Segoe UI;
 	font-size: 16px;
 	margin: 0;
@@ -22,21 +22,6 @@ button {
 
 canvas {
     margin-left : 2.5%;
-    margin-right : 2.5%;
-    width: 90%;
+    width: 95%;
     background-color: blue;
-}*/
-
-
-/*----- Modification Boris 23/11---------------*/
-#previewImg {
-    width: 400px;
-    height: 200px;
-    background-color: blue;
-    max-width: 95%;
-}
-
-#imgcapture {
-    max-width: 100%;
-	height: auto;
 }

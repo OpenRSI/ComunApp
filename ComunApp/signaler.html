@@ -1,18 +1,105 @@
 <html>
     <head>
-        <script type="text/javascript" charset="utf-8" src="js/jquery-1.9.1.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/signaler.js"></script>
+        
+        <meta charset="utf-8" />
+       	<meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        
+        <script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery.mobile-1.3.1.min.js"></script>
+		
+    
+    	<script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript" charset="utf-8" src="js/signaler.js"></script>		
+  
+		
+		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+	
         <link rel="stylesheet" type="text/css" href="css/signaler.css" />
+        
+        
     </head>
-    <body>
-        <p>
-            <button id="btnUuid" name="btnUuid" onclick="getUuid();">obtenir l'UUID</button>
-            <button id="btnCapture" name="btnCapture" onclick="capture();">prendre une photo</button>
-            <button id="btnClear" name="btnClear">clear</button>
-        </p>
-        <p>
-            <canvas id="previewImg"></canvas>
-        </p>
+    
+    
+    
+    
+    <body>       
+        
+       <div id="main" data-role="page" >
+        
+           
+           	<div data-role="header" data-fullscreen="true" data-theme="b">
+        		<div id="MENUHS" class="colonneH"><img class="img1" src="img/BigLogo.png"/></div>
+				<div class="colonneH1"><a href="credit.html" ata-transition="none"><img class="img1" src="img/engrenage.png"/></a></div>  
+        		<div class="colonneH1"><div class="colonneHbis"><div  align="right" id="starC"><b>10</b></div></div><center><img class="img1" src="img/star.png"/></center></div>	
+			</div>
+           
+           
+           
+           
+              
+       		<div id="conteneur" data-role="content">
+        
+ 				          <center>
+                               
+                               <div data-role="collapsible" data-theme="b" data-content-theme="d" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u" data-iconpos="right" > <h3>Choisissez la nature du problème :</h3>
+		
+				                        <fieldset data-role="controlgroup" data-mini="true" id="problemType">
+				                        <legend>Choisissez l'intitulé le plus approprié</legend>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="Détérioration">
+				                        <label for="radio-choice-v-6a">Détérioration infrasctructure</label>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="Vendalisme">
+				                        <label for="radio-choice-v-6b">Vendalisme sur des biens public</label>
+				                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="amélioration">
+				                        <label for="radio-choice-v-6c">Demande d'amélioration</label>
+				                        </fieldset>	
+						
+			                        </div>
+                               
+                           </center>    
+                      
+                       <center><div><img id="imgcapture" src=""/></div></center>    
+                
+                
+                
+           			<center><div><input id="btnCapture" name="btnCapture" data-theme="e" type="button" value="Prendre une photo" /></div></center>
+                 	<center><div><textarea id="commentaire" name="commentaire" data-theme="e" rows=40 COLS=40></textarea></div></center>
+           
+                   	<center><div><input id="btnUuid" name="btnUuid" data-theme="e" type="button" value="Obtenir l'UUID" /></div></center>
+        	
+              
+                </div>
+     
+    
+    
+           	<div data-role="footer" data-position="fixed" >
+				<center>
+					<div class="colonnePied"><a href="index.html" data-transition="none"><img src="img/home.png" height="30" width="30"/></a></div>   
+					<div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
+					<div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
+					<div class="colonnePied"><img src="img/pratique.png" height="30" width="30"/></div>  
+					<div class="colonnePied"><img src="img/signalerJ.png" height="30" width="30"/></div>  
+					<div class="colonnePied"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="30" width="30"/></a></div>   
+					<div class="colonnePied"><img src="img/mairie.png" height="30" width="30"/></div>  
+				</center>
+			</div>
+
+                    
+           
+      </div>
+    
+    
     </body>
+    
+ 
+    <script type="text/javascript">
+            app.initialize();
+    </script>
+    
+       
+    
+    
 </html>

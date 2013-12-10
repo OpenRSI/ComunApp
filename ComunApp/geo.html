@@ -38,7 +38,7 @@ function indexHTML(){
 	var $longitudeInit;
     var $latitude=48.858565;
 	var $longitude=2.347198;
-    var $zoom = 13;
+    var $zoom = 15;
     var newLongitude =null;
 	var newLatitude = null;
     var $infos="Recherche nom de la localité";
@@ -60,9 +60,9 @@ function indexHTML(){
           zoom: $zoom,
           center: $positionInitial,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-	      scaleControl: false,
+	      scaleControl: true,
 	      panControl: false,
-          zoomControl: true,
+          zoomControl: false,
           streetViewControl: false,
           overviewMapControl:  false,
           navigationControl: false,

@@ -59,8 +59,6 @@ $(document).bind('pageinit', function() {
     var preview = $("#imgcapture");
     var commentaire;
     var type;
-    var options = new FileUploadOptions();
-    var params = new Object();
      
     //click sur le bouton Uuid
     $("#btnUuid").bind( "click", function() {
@@ -118,6 +116,8 @@ $(document).bind('pageinit', function() {
         commentaire = $('#commentaire').val();
         alert(commentaire);
         
+        var options = new FileUploadOptions();
+        var params = new Object();
         options.fileKey="file";
         options.fileName= preview.attr('src').substr(fileURI.lastIndexOf('/')+1);
         options.mimeType="image/jpeg";

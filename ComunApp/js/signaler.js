@@ -57,7 +57,10 @@ $(document).bind('pageinit', function() {
     //déclarations de variable du script
     var code_postal;
     var preview = $("#imgcapture");
-    
+    var commentaire;
+    var type;
+    var options = new FileUploadOptions();
+    var params = new Object();
      
     //click sur le bouton Uuid
     $("#btnUuid").bind( "click", function() {
@@ -69,7 +72,7 @@ $(document).bind('pageinit', function() {
             //récupération des données postales
             $.getJSON( "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + input + "&sensor=true", function(data) {
                 code_postal = data['results'][0]['address_components'][6]['long_name'];
-                alert(code_postal);
+                sending();
                 });
         }, function(){
             
@@ -77,9 +80,9 @@ $(document).bind('pageinit', function() {
             var entrercode = prompt('Localisation impossible ! Veuiller entrer le code postal de la commune :');
             
             code_postal = entrercode;
-            alert(code_postal);
-            
+            sending();
         }, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+        
     });
     
     
@@ -106,7 +109,27 @@ $(document).bind('pageinit', function() {
         navigator.notification.alert(msg, null, 'Annuler !');
     }
     
-    
+    function sending() {
+        alert(code_postal);
+        if ($('#problemType input:checked').val()) {
+            type = $('#problemType input:checked').val();
+        }
+        alert(type);
+        commentaire = $('#commentaire').val();
+        alert(commentaire);
+        
+        options.fileKey="file";
+        options.fileName= preview.attr('src').substr(fileURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+        params.type = type;
+        params.commentaire = commentaire;
+        params.codepostal = code_postal;
+        params.universalid = device.uuid;
+        options.params = params;
+        var ft = new FileTransfer();
+        ft.upload(preview.attr('src'), 'http://comunapp.openrsi.fr/thomas/signaler.php', function(e) {}, function(e){}, options);
+        
+    }
     
     
     //----Gestion des boutons Menu--------------------------->

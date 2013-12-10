@@ -127,7 +127,9 @@ $(document).bind('pageinit', function() {
         params.universalid = device.uuid;
         options.params = params;
         var ft = new FileTransfer();
-        ft.upload(preview.attr('src'), 'http://comunapp.openrsi.fr/thomas/signaler.php', function(e) {}, function(e){}, options);
+        ft.upload(preview.attr('src'), 'http://comunapp.openrsi.fr/thomas/signaler.php', function(r) {
+            alert(r.response);
+        }, function(error){}, options);
         
     }
     

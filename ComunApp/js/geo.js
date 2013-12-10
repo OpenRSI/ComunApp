@@ -112,6 +112,7 @@ function recenterMap(lat,lng){
 */
 function afficheContour(){
   var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/dep.kml' });
+    preserveViewport: true;
   ctaLayer.setMap(map);
 }
   

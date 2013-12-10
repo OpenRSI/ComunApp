@@ -64,9 +64,6 @@ display:inline;
 	
     width: 80%;
 	height:auto;
-	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:12px;
-	color:white;
 	padding-top:10%;
 	position:absolute;
 	
@@ -86,7 +83,7 @@ display:inline;
 
 #photos {
 
-	padding-top:6%;
+	padding-top:3%;
 	padding-bottom:2%;
 }
 
@@ -94,7 +91,11 @@ display:inline;
 #kenburns{
 	border: 5px solid #fff;
     
-	width:90%;
+	/* Déforme le contenue de la photo 
+    
+    width:90%; 
+    
+    */
  
 	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
             -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
@@ -103,6 +104,39 @@ display:inline;
     background-color: blue;
 }
 
+
+
+
+/* CSS pour le panneau routier de la commune dans le header */
+
+
+#panneau{
+	border: 5px solid #fff;
+	width:50%;
+	box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7),
+            -1px 2px 20px rgba(255, 255, 255, 0.6) inset; 
+
+  	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+
+    margin-top:1%;
+    margin-bottom:9%;
+}
+
+
+#panneau1{
+	border: 5px solid #FF0000;
+ 	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	font-size:24px;
+    font-weight: bold;
+    background-color:#fff;
+}
+
+
+/* ---------------------------------------- */
 
 
 
@@ -119,6 +153,8 @@ display:inline;
 	
 }
 
+
+
 #photoP{
 	max-height: 250px;
 
@@ -132,14 +168,13 @@ display:inline;
     
 	padding:2%;
     
-    
-    
-	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:14px;
-	font-weight:bold;
-	color:#A05000;
+   
+
 		
 }
+
+
+
 
 .bouton{
    
@@ -155,8 +190,7 @@ display:inline;
         color-stop(0.90, #7200AC)
     );
 	
-		
-	
+
 
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -165,6 +199,8 @@ display:inline;
     box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.3) inset;
 
 }
+
+
 
 .bouton:hover{
    
@@ -208,7 +244,7 @@ display:inline;
 
 .message1{
 
-	font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+	font-family:'Helvetica', HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:18px;
 	color:#7200AC;
 	text-shadow:1px 1px 2px gray;
@@ -349,35 +385,83 @@ max-width:46px;
 
 
 
+.Fontmenu{
+	
+	padding-bottom:10px;
+    font-family:'Helvetica', 'HelveticaNeue-Light', 'HelveticaNeue', Arial, sans-serif;
+    font-size:24px;
+	color:white;
+
+}
 
 
+
+
+
+
+
+/* Ensemble de r?gles CSS pour Smartphone */
 @media screen
 and (min-width: 200px)
 and (max-width: 560px){
-    /* Ensemble de r?gles CSS pour Smartphone */
-	
-	
+    
+#starC{	
+ font-size:12px;
+
+}	
+
+    
+    #def{	
+ 	font-size:18px;
+	width:80%;
+	margin-top:3%;
+	padding-bottom:3%;        
+        
+	}   
+    
+    
 }
 	
 	
 
+
+/* Ensemble de r?gles CSS pour tablette */
 @media screen
 and (min-width: 561px)
 and (max-width: 1000px){
-    /* Ensemble de r?gles CSS pour tablette */
-
+    
+    
+#village{	
+position: static;
+}
 	
+    
 #starC{	
  font-size:18px;
 
 }
+    
+#def{	
+ 	font-size:24px;
+	width:80%;
+	margin-top:3%;
+	padding-bottom:3%;        
+        
+	}  
+    
 	
 }
 
+
+
+/* Ensemble de r?gles CSS pour ?cran d'ordinateur */
 @media screen
 and (min-width: 1001px){
-    /* Ensemble de r?gles CSS pour ?cran d'ordinateur */
-
+   
+#village{	
+position: static;
+}
+    
 #starC{	
  font-size:24px;
 

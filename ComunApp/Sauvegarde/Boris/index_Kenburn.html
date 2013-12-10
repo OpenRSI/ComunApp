@@ -8,7 +8,7 @@
     	<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery.mobile-1.3.1.min.js"></script>
     	<script type="text/javascript" src="cordova.js"></script>
-
+    	<script type="text/javascript" src="js/kenburns.js"></script>
         <script type="text/javascript" src="js/defiler.js"></script>
     
   	
@@ -31,24 +31,56 @@
     
 <script type="text/javascript">
 			$(function(){
-				            
+				$('#kenburns').kenburns({
+					images:['img/mairie10.png',
+							'img/mairie20.png',
+							'img/marie30.jpg',
+							'img/marie40.jpg',
+							'img/marie50.jpg'
+							],
+                    frames_per_second: 30,
+					display_time: 10000,
+					fade_time: 1000,
+					zoom: 1,
+					background_color:'#ffffff',
+					post_render_callback:function($canvas, context) {
+						// Called after the effect is rendered
+						// Draw anything you like on to of the canvas
+						
+						context.save();
+						context.fillStyle = '#000';
+						context.font = 'bold 12px sans-serif';
+						var width = $canvas.width();
+						var height = $canvas.height();												
+						var text = "Toutes les informations pratiques de ma commune";
+						var metric = context.measureText(text);
+						
+						context.fillStyle = '#fff';
+						
+						context.shadowOffsetX = 3;
+						context.shadowOffsetY = 3;
+						context.shadowBlur = 4;
+						context.shadowColor = 'rgba(0, 0, 0, 0.8)';
+						
+						context.fillText(text, width - metric.width - 8, height - 8);						
+						
+						context.restore();						
+					}
+				});				
+			
+            
             
             //----Gestion des boutons Menu--------------------------->
     
             //----Menu Header ------------->
     
             $("#MENUHSA").bind("click",function(){
-
+        			navigator.notification.vibrate(100);
                     window.location = "index.html";
             });
                 
-            $( "#MENUHSA" ).bind( "mouseenter", function() {
-        			navigator.notification.vibrate(100);
-			});
+                
     
-                
-              
-                
             //----Menu Boutons ------------->
                 
             $("#SIGNALP").bind("click",function(){
@@ -99,7 +131,7 @@ window.location = "geo.html";
     </div>
 	
 
-     <center><div id="def">
+     <div id="def">
             
                 <span>
                     <nobr>
@@ -110,8 +142,7 @@ window.location = "geo.html";
                     </nobr>
                 </span>
            
-    	</div> </center> 
-    
+    </div>   
     
           <center>
         
@@ -129,8 +160,16 @@ window.location = "geo.html";
     
     
     
-         
     
+    <div id="photos">	
+		
+		 <center>
+             <canvas id="kenburns">
+				    <p>Your browser doesn't support canvas!</p>
+             </canvas>
+    	</center>
+
+  	</div>  
     
     
     

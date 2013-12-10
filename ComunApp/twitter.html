@@ -17,7 +17,15 @@
     	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
 
-		
+	<script type="text/javascript">
+    
+                          // --> redirection vers la page index
+    
+function indexHTML(){
+ 
+ window.location = "index.html";
+}
+</script>	
 	
 </head>
 
@@ -65,7 +73,7 @@
 	 
 <div data-role="footer" data-position="fixed">
 		<center>
-		<div class="colonnePied"><a href="index.html" data-transition="none"><img src="img/home.png" height="30" width="30"/></a></div>   
+		<div class="colonnePied"><a href=""  onclick="indexHTML()" data-transition="none"><img src="img/home.png" height="30" width="30"/></a></div>   
 		<div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
 		<div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
 		<div class="colonnePied"><img src="img/pratique.png" height="30" width="30"/></div>  

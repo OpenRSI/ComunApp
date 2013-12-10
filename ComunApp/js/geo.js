@@ -12,9 +12,11 @@
     
   }
     
+
   function onDeviceReady() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   } 
+
 
   /*
   *   onSuccess : Lecture du capteur GPS , affiche Map et marker 
@@ -41,7 +43,7 @@
    
  function updateGpsPosition(){  
      
- var watchId = navigator.geolocation.watchPosition(
+ watchId = navigator.geolocation.watchPosition(
         
     function(position){ 
       newLatitude = position.coords.latitude; 
@@ -91,10 +93,11 @@ function afficheMap(lat,lng){
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
  createInfoWindow();
- afficheContour();   
- //map.panTO(position);
+ //afficheContour();   
+
     
-    }
+}
+
 
 /*
 *   Re-centrer la carte 
@@ -108,7 +111,7 @@ function recenterMap(lat,lng){
 
 
 /*
-*    Affiche le contour en fonction du fichier situer sur un serveur
+*    Affiche le contour en fonction du fichier situé sur un serveur
 */
 function afficheContour(){
   var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/dep.kml' });
@@ -154,6 +157,7 @@ function afficheMarker(lat,lng) {
   marker.setMap(map);
 } 
   
+
 /*
 * afficher infobulle sur la carte
 */
@@ -166,8 +170,8 @@ function afficheMarker(lat,lng) {
 function createInfoWindow(){
     
    var TabObjectWindows = new Array;
-   TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
-   TabObjectWindows[1] = new Object_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
+   TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$latitude+0.00101,$longitude+0.001,$Evenement1.content) ;
+   TabObjectWindows[1] = new Object_Windows('marker2','infoWindows2', $latitude-0.00229,$longitude-0.003,$Evenement2.content) ; 
     
    for (var i=0;i<TabObjectWindows.length;i++){
       TabObjectWindows[i].makerID.setPosition( TabObjectWindows[i].marker_LatLng);

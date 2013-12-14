@@ -62,7 +62,7 @@
       
       afficheInfo($infos);  
        
-   }, null, {enableHighAccuracy:true, maximumAge:20, timeout: 1000}); 
+   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
     
      
      

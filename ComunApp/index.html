@@ -37,14 +37,24 @@
     
             //----Menu Header ------------->
     
-            $("#MENUHSA").bind("click",function(){
-
-                    window.location = "index.html";
-            });
+                         
+            var myMenu = $('#MENUHSA');
+                //myMenu.css('background-color', 'red');
+                myMenu.bind('click', function() {$.mobile.changePage("geo.html",{transition: "slide"});});
                 
-            $( "#MENUHSA" ).bind( "mouseenter", function() {
-        			navigator.notification.vibrate(100);
-			});
+                
+                //myMenu.bind('click', function() {window.location = "index.html";});
+                
+                		myMenu.bind('mouseenter', function() {navigator.notification.vibrate(100);});
+                //myMenu.show(); 
+                
+                // $("#MENUHSA").bind("click",function(){
+                //window.location = "index.html";
+                //});
+                
+                //$( "#MENUHSA" ).bind( "mouseenter", function() {
+                //navigator.notification.vibrate(100);
+                //});
     
                 
               

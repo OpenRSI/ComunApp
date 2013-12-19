@@ -15,13 +15,6 @@
 		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/main.css" />
     
-    
-
-    
-    
-    
-    
-    
 
 <script type="text/javascript">
     var cacherss = Fichier('http://comunapp.openrsi.fr/rss/cache_local/cache.txt');
@@ -34,40 +27,121 @@
 				            
             
             //----Gestion des boutons Menu--------------------------->
-    
+                  
+				function menup() {
+				window.location = "index.html";
+				}               	            
+                
+                function actualite() {
+				window.location = "geo.html";
+				}
+                
+                function twitter() {
+				window.location = "twitter.html";
+				}
+                
+                function proximite() {
+				window.location = "#";
+				}
+                
+                function signaler() {
+				window.location = "signaler.html";
+				}
+                
+                function pratique() {
+				window.location = "urgence.html";
+				}
+                
+             	function administration() {
+				window.location = "administration.html";
+				}
+                
+                
+                
             //----Menu Header ------------->
     
-                         
-            var myMenu = $('#MENUHSA');
-                //myMenu.css('background-color', 'red');
-                myMenu.bind('click', function() {$.mobile.changePage("geo.html",{transition: "slide"});});
+            var myMenuP = $('#MENUHSA');
+            var myMenuAct = $('#MENUACT');
+            var myMenuTwit = $('#TWITTERP');
+            var myMenuProxi = $('#PROXIMIT');
+            var myMenuSign = $('#SIGNALP');
+            var myMenuPratiq = $('#PRATIQ');
+            var myMenuAdmin = $('#ADMINP');
+                                   
+                myMenuP.bind('click', function() {$('body').fadeOut(1000, menup);});
+            	myMenuAct.bind('click', function() {$('body').fadeOut(1000, actualite);});
+                myMenuTwit.bind('click', function() {$('body').fadeOut(1000, twitter);});
+                myMenuProxi.bind('click', function() {$('body').fadeOut(1000, proximite);});
+                myMenuSign.bind('click', function() {$('body').fadeOut(1000, signaler);});
+                myMenuPratiq.bind('click', function() {$('body').fadeOut(1000, pratique);});
+                myMenuAdmin.bind('click', function() {$('body').fadeOut(1000, administration);});
+                                
+                
+                myMenuP.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#MENUACT').fadeOut("slow");
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});            
                 
                 
-                //myMenu.bind('click', function() {window.location = "index.html";});
+                myMenuAct.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});  
                 
-                		myMenu.bind('mouseenter', function() {navigator.notification.vibrate(100);});
-                //myMenu.show(); 
+                myMenuTwit.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#MENUACT').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});  
                 
-                // $("#MENUHSA").bind("click",function(){
-                //window.location = "index.html";
-                //});
+                myMenuProxi.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#MENUACT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});  
                 
-                //$( "#MENUHSA" ).bind( "mouseenter", function() {
-                //navigator.notification.vibrate(100);
-                //});
-    
+                myMenuSign.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#MENUACT').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});  
                 
+                myMenuPratiq.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#MENUACT').fadeOut("slow");
+                	$('#ADMINP').fadeOut("slow");
+            	});  
+                
+                myMenuAdmin.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                	$('#TWITTERP').fadeOut("slow");
+                	$('#PROXIMIT').fadeOut("slow");
+                	$('#SIGNALP').fadeOut("slow");
+                	$('#PRATIQ').fadeOut("slow");
+                	$('#MENUACT').fadeOut("slow");
+            	});  
               
-                
-            //----Menu Boutons ------------->
-                
-            $("#SIGNALP").bind("click",function(){
-                    window.location = "signaler.html";
-            });
-                
-            $("#TWITTERP").bind("click",function(){
-                    window.location = "twitter.html";
-            });
                 
                 
                 
@@ -78,14 +152,7 @@
 			
 		</script>
     
-    
-<script type="text/javascript">
-function geo(){
-window.location = "geo.html";
-}
-</script>
-    
-    
+      
 	<title>ComunApp</title>
 	
 </head>
@@ -109,6 +176,9 @@ window.location = "geo.html";
     </div>
 	
 
+  
+    
+    
      <center><div id="def">
             
                 <span>
@@ -145,17 +215,12 @@ window.location = "geo.html";
     
     
     <div id="conteneur" data-role="content">	
-	
-		
-        
-  
-              
         
         <center>
         
-            <div class="colonne"><div style="background-color:#FF5C05;"><a href="" onclick="geo()"><img src="img/news.png" height="80" width="80"/><br/><div class="Fontmenu">Actualités</div></a></div></div>
+            <div class="colonne"><div id="MENUACT" style="background-color:#FF5C05;"><img src="img/news.png" height="80" width="80"/><br/><div class="Fontmenu">Actualités</div></div></div>
             <div class="colonne"><div id="TWITTERP" style="background-color:#FF6F08;"><img src="img/sortir.png" height="80" width="80"/><br/><div class="Fontmenu">Web 2.0</div></div></div>
-            <div class="colonne"><div style="background-color:#E82003;"><img src="img/pratique.png" height="80" width="80"/><br/><div class="Fontmenu">Proximité</div></div></div>
+            <div class="colonne"><div id="PROXIMIT" style="background-color:#E82003;"><img src="img/pratique.png" height="80" width="80"/><br/><div class="Fontmenu">Proximité</div></div></div>
 	
         
 	    </center>	
@@ -166,76 +231,28 @@ window.location = "geo.html";
         <center>
         
             <div class="colonne"><div id="SIGNALP" style="background-color:#FF0391;"><img src="img/signaler.png" height="80" width="80"/><br/><div class="Fontmenu">Signaler</div></div></div>
-            <div class="colonne"><div style="background-color:#B60EFF;"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="80" width="80"/><br/><div class="Fontmenu">Pratique</div></a></div></div>
-            <div class="colonne"><div style="background-color:#310BFF;"><img src="img/mairie.png" height="80" width="80"/><br/><div class="Fontmenu">Services</div></div></div>
+            <div class="colonne"><div id="PRATIQ" style="background-color:#B60EFF;"><img src="img/urgence.png" height="80" width="80"/><br/><div class="Fontmenu">Pratique</div></div></div>
+            <div class="colonne"><div id="ADMINP" style="background-color:#310BFF;"><img src="img/mairie.png" height="80" width="80"/><br/><div class="Fontmenu">Services</div></div></div>
 
  
 	    </center>	
 	 
-        
-	   
-    
+
 	</div>
     
-    
-   
-    
-    
-       
-    
+
     
     <div id="village" data-role="footer" data-fullscreen="true" data-theme="none" data-position="fixed">
 		
         <center><img class="img1" src="img/village.png"/></center>
 		
 	
-    	
-    
     
     </div>
     
-    
-    
-    
-    <!--   
-    
-    <div data-role="footer" data-position="fixed">
-        
-        
-        <div id="def">
-            
-                <span>
-                    <nobr>
-                        <script type="text/javascript">
-                           Contenu = window.localStorage.getItem('cache');
-                           document.write(Contenu);
-                        </script>
-                    </nobr>
-                </span>
-           
-        </div>   
-        
-		<center>
-		    <div class="colonnePied"><img src="img/homeJ.png" height="30" width="30"/></div>   
-		    <div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><img src="img/pratique.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><a href="signaler.html" data-transition="none"><img src="img/signaler.png" height="30" width="30"/></a></div>  
-		    <div class="colonnePied"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="30" width="30"/></a></div>  
-		    <div class="colonnePied"><img src="img/mairie.png" height="30" width="30"/></div>  
-		</center> 
-    
-    
-    
-    </div> -->
-    
-	
 	
 </div>	
-
-		
-		
+	
   
 </body>
-
 </html>

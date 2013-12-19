@@ -1,32 +1,46 @@
-#main{
-	
-	-webkit-touch-callout: none;               
-    -webkit-text-size-adjust: none;             
-    -webkit-user-select: none;                  
-    background-color:#1BA1E2;
-    background-image:linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
-    background-image:-webkit-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
-    background-image:-ms-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #1BA1E2),
-        color-stop(0.90, #A6EDF2)
-    );
-  	
-
- 
-
-	/*position: relative;*/
-	
+html {
+    background: #3B97D3; 
+}
+body {
+}
+img, h1, h2, h3, h4, h5, ul, li, dd, dt, p {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/* Police*/
+@font-face {
+    font-family: 'century_gothicregular';
+    src: url('../img/police/gothic-webfont.eot');
+    src: url('../img/police/gothic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../img/police/gothic-webfont.woff') format('woff'),
+         url('../img/police/gothic-webfont.ttf') format('truetype'),
+         url('../img/police/gothic-webfont.svg#century_gothicregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Menu page principale*/ 
+ul#conteneur {
+    font: 1.1em 'century_gothicregular';
+}
+ul#conteneur li{
+    background: #F19B1F;
+    width:29.339191%;
+    margin: 2%;
+    float:left; 
+}
+ul#conteneur img {
+    margin:15% 30% 7%; 
+}
+ul#conteneur a {
+    text-decoration:none;
+    color:#fff;
+    text-align:center;
+    display:block;
+    padding-bottom:5%; 
 }
 
-#conteneur {
 
-
-
-}
 
 .spanpratique{
 float:left;
@@ -244,8 +258,7 @@ display:inline;
 
 .message1{
 
-	font-family:'Helvetica', HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
-    font-size:18px;
+	
 	color:#7200AC;
 	text-shadow:1px 1px 2px gray;
 

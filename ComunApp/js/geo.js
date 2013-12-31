@@ -205,7 +205,7 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
     var named = $latitude+' '+$longitude;
 	
     
-    xhr.open("GET", "http://sylnebert.openrsi.fr/ajax.php?named= " + named);
+    xhr.open("GET", "http://comunapp.openrsi.fr/informations_get.php?categorie=3&commune=78280");
     xhr.send(null);
 }
 

@@ -1,6 +1,6 @@
   
   function main(){
-  
+   
     document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
      
@@ -8,8 +8,7 @@
     if ((newLongitude != $longitude) || (newLongitude != $longitude)){      
       updateGpsPosition();
     } 
-      
-    
+       
   }
     
 
@@ -30,7 +29,7 @@
     afficheMap($latitude, $longitude);
       
     afficheMarker($latitude, $longitude);
-    
+ 
   } 
   
   /*
@@ -38,7 +37,7 @@
   */
   function onError(error) {
     $infos='err : '+ error.code+' message: ' + error.message;        
-    afficheInfo($infos);           
+    //afficheInfo($infos);           
   }
    
  function updateGpsPosition(){  
@@ -52,17 +51,18 @@
              
        if (position.coords.accuracy < 100){
            
-           if ($latitudeInit-newLatitude > 0.000100){
+           if ($latitudeInit-newLatitude > 0.00001){
                 recenterMap(newLatitude,newLongitude);
        }
           afficheMarker(newLatitude,newLongitude);
-         $infos=getCommune( newLatitude, newLongitude);
+         //$infos=getCommune( newLatitude, newLongitude);
+         getCommune2( newLatitude, newLongitude);
            
       }
       
       afficheInfo($infos);  
        
-   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 1000}); 
+   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 500}); 
     
      
      
@@ -92,10 +92,12 @@ function afficheMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
- createInfoWindow();
- //afficheContour();   
-
+  
+ 
+  afficheContour2() ;
+  //createInfoWindow();  
     
+ //afficheContour();       
 }
 
 
@@ -108,22 +110,89 @@ function recenterMap(lat,lng){
    map.panTo(position); 
 }
 
-
+function recenterMap2(pos){
+  
+   map.panTo(pos); 
+}
 
 /*
 *    Affiche le contour en fonction du fichier situé sur un serveur
 */
 function afficheContour(){
-  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/dep.kml' });
+  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/test.kml' });
     preserveViewport: true;
   ctaLayer.setMap(map);
 }
+
   
+function afficheContour2(){
+ 
+  url="http://spiritblues.free.fr/getVille.php";
+      
+  var xml;
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
+            success: xmlParser1
+        });
+    });   
+}
+
+
+function xmlParser1(data) {
+    var chemin = new google.maps.MVCArray();
+    var tabPoint = new Array;
+    var reg=new RegExp("[ ,:]+");
+    
+    xml = data;
+    $(xml).find("coordinates").each(function () {string = $(this).attr("latlng");});
+    tableau=string.split(reg);
+   
+  b=0;
+  a=0;
+   do {
+     var lat= Number(tableau[a]);
+     var long= tableau[a+1];
+      tabPoint[b]= new google.maps.LatLng(lat,long); 
+      b++;
+       a=a+2;
+     } while(a<tableau.length); 
+  
+   
+      for (var j=0;j<tabPoint.length ;j++){
+         
+      chemin.push(tabPoint[j]);   
+      }
+        
+    
+      var polygone = new google.maps.Polygon({
+        map: map,
+        paths: chemin,
+        strokeColor: '#00AA00',
+        strokeOpacity: 0.8,
+        strokeWeight: 1,
+        fillColor: '#00FF00',
+        fillOpacity: 0.35
+        });  
+    
+    
+    var centre= tabPoint[12];
+    recenterMap2(centre);
+    $zoom=13;
+}
+    
+
+
+
+
+
  /*
   *   Retourne le nom de la localité fonction des coordonées GPS passé en parametre
   */   
  function getCommune(lati,longi) {
-  var geocoder = new google.maps.Geocoder();
+ geocoder = new google.maps.Geocoder();
   var lat = parseFloat(lati);
   var lng = parseFloat(longi);
   var latlng = new google.maps.LatLng(lat, lng);
@@ -131,8 +200,9 @@ function afficheContour(){
   geocoder.geocode({'latLng': latlng}, function(results, status) {
   
     if (status == google.maps.GeocoderStatus.OK) {
-      if (results[0]) {
-		commune = results[2].formatted_address;
+      if (results[1]) {
+		
+         commune  = results[0].formatted_address;
       } else {
 		commune='none';
       }
@@ -142,6 +212,29 @@ function afficheContour(){
     });
  return commune;
 }
+
+
+function getCommune2(lat,lng){
+    
+   var latlng = new google.maps.LatLng(lat, lng); 
+    
+    geocoder.geocode({'latLng': latlng}, function(results, status) { 
+      if (status == google.maps.GeocoderStatus.OK) { 
+        if (results[1]) { 
+            res1=results[0].formatted_address.replace(/,/gi);       
+          res2= results[0].formatted_address;
+        } 
+      } else { 
+        alert("Les coordonnée n'ont pas pu être géolocalisées pour la raison suivante : " + status); 
+      } 
+    }); 
+  
+     afficheInfo(res2);
+
+   //return res2;
+}
+
+
 
 
 
@@ -190,9 +283,7 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
     }
   
 
-
- 
-  function request(callback) {
+ function request(callback) {
     var xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function() {
@@ -216,27 +307,98 @@ function readData(sData) {
    afficheMap($latitude,$longitude);
 }
    
+ 
+ 
      
      
-  /* 
-  xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
- xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
- xhr.send("login=rene&pwd=password");
-    
-     xhr.open("GET", "http://sylnebert.openrsi.fr/test.php", true);
-    /*xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login=rene&pwd=password")
-function readData(sData) {
-   $infos=sData;
-    afficheInfo($infos);  
   
-} xhr.send(null);
     
-    */
+function createXmlHttpRequest() {
+try {
+if (typeof ActiveXObject != 'undefined') {
+return new ActiveXObject('Microsoft.XMLHTTP');
+} else if (window["XMLHttpRequest"]) {
+return new XMLHttpRequest();
+}
+} catch (e) {
+changeStatus(e);
+}
+return null;
+};
+
+function downloadUrl(url, callback) {
+ var status = -1;
+ var request = createXmlHttpRequest();
+ if (!request) {
+  return false;
+ }
     
+request.onreadystatechange = function() {
+    
+ if (request.readyState == 4) {
+    
+  try {
+   status = request.status;
+     } catch (e){
+    }
+   if (status == 200) {
+   callback(request.responseText, request.status);
+    request.onreadystatechange = function() {};
+  }
+ }
+}
+  request.open('GET', url, true);
+ try {
+ request.send(null);
+ } catch (e) {
+  changeStatus(e);
+ }
+
+};
+
+    
+ function xmlParse(str) {
+if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined') {
+var doc = new ActiveXObject('Microsoft.XMLDOM');
+doc.loadXML(str);
+return doc;
+}
+if (typeof DOMParser != 'undefined') {
+return (new DOMParser()).parseFromString(str, 'text/xml');   
+ }
+return createElement('div', null);
+}   
+
+/*
+function getXML(url){
+  downloadUrl(url, function(data) {
+var xml = xmlParse(data);
+var markers = xml.documentElement.getElementsByTagName("marker");
+$infos=markers[2].getAttribute("titre")+" : "+markers[2].getAttribute("description");
+afficheInfo($infos);   
+       
+for (var i = 0; i < markers.length; i++) {
+createMarker(parseFloat(markers[i].getAttribute("lat")),
+parseFloat(markers[i].getAttribute("lng")), markers[i].getAttribute('titre'),
+markers[i].getAttribute('description'));
+    
+ 
+}
+});   
+        
+}
+*/
 
 
+function getXML(url){
+  downloadUrl(url, function(data) {
+var xml = xmlParse(data);
+var markers = xml.documentElement.getElementsByTagName("coordinates");
+$infos=markers[0].getAttribute("latlng");
+ afficheInfo($infos);  
+       
 
-    
-    
-    
+});   
+        
+}
+

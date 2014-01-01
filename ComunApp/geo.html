@@ -39,10 +39,13 @@ function indexHTML(){
 	var $longitudeInit;
     var $latitude=48.858565;
 	var $longitude=2.347198;
-    var $zoom = 14;
+    var $zoom = 12;
     var newLongitude =null;
 	var newLatitude = null;
     var $infos="Recherche nom de la localité";
+    var polygone = new google.maps.Polygon;
+     $points="test";
+    var $tabPoint= new Array;
     
     
     // --- Coordonnées GPS des marker pour infoWindows à visualiser sur la carte ---
@@ -72,8 +75,8 @@ function indexHTML(){
       }
       
     
-    var map = new google.maps.Map(document.getElementById('map'),mapOptions);
-    
+     map = new google.maps.Map(document.getElementById('map'),mapOptions);
+     geocoder = new google.maps.Geocoder();
 </script>
     
 	<title>Comunapp</title>

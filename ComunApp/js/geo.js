@@ -1,6 +1,6 @@
   
   function main(){
-   
+  
     document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
      
@@ -37,9 +37,9 @@
   */
   function onError(error) {
     $infos='err : '+ error.code+' message: ' + error.message;        
-    //afficheInfo($infos);           
+           
   }
-   
+ 
  function updateGpsPosition(){  
      
  watchId = navigator.geolocation.watchPosition(
@@ -47,25 +47,35 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-       $infos=getCommune( newLatitude, newLongitude);
+      
              
        if (position.coords.accuracy < 100){
            
-           if ($latitudeInit-newLatitude > 0.00001){
+           if ($latitudeInit-newLatitude > 0.00101){
                 recenterMap(newLatitude,newLongitude);
        }
           afficheMarker(newLatitude,newLongitude);
-         //$infos=getCommune( newLatitude, newLongitude);
-         getCommune2( newLatitude, newLongitude);
+         $adresse=getCommune( newLatitude, newLongitude);
+        
+         var reg1=new RegExp(",");
+          adressePart2=$adresse.split(reg1);
+           
+          codePostal=adressePart2[1].substr(1, 6);
+           
            
       }
-      
-      afficheInfo($infos);  
-       
-   }, null, {enableHighAccuracy:true, maximumAge:0, timeout: 500}); 
     
-     
-     
+        
+          afficheInfo( $adresse);
+       
+         afficheContour2(codePostal);
+       
+        
+   }, null, {enableHighAccuracy:true, maximumAge:1000, timeout: 1500}); 
+    
+   
+    
+       
      
  }      
          
@@ -94,7 +104,7 @@ function afficheMap(lat,lng){
   map.setCenter(position);
   
  
-  afficheContour2() ;
+  //afficheContour2( $codePostal.value) ;
   //createInfoWindow();  
     
  //afficheContour();       
@@ -125,11 +135,12 @@ function afficheContour(){
 }
 
   
-function afficheContour2(){
- 
-  url="http://spiritblues.free.fr/getVille.php";
+function afficheContour2(cp){
+   
+   
+  url="http://spiritblues.free.fr/getVille.php?cp="+cp;
       
-  var xml;
+ 
     $(document).ready(function(){
         $.ajax({
             type: "GET",
@@ -137,11 +148,13 @@ function afficheContour2(){
             dataType: "xml",
             success: xmlParser1
         });
-    });   
+    }); 
+     
 }
 
 
 function xmlParser1(data) {
+    
     var chemin = new google.maps.MVCArray();
     var tabPoint = new Array;
     var reg=new RegExp("[ ,:]+");
@@ -149,6 +162,12 @@ function xmlParser1(data) {
     xml = data;
     $(xml).find("coordinates").each(function () {string = $(this).attr("latlng");});
     tableau=string.split(reg);
+    
+    //reset (tabPoint[j]
+    for (var z=0;z<tabPoint.length ;z++){
+         
+      tabPoint[z]=NULL  ; 
+      }
    
   b=0;
   a=0;
@@ -167,7 +186,7 @@ function xmlParser1(data) {
       }
         
     
-      var polygone = new google.maps.Polygon({
+      polygone = new google.maps.Polygon({
         map: map,
         paths: chemin,
         strokeColor: '#00AA00',
@@ -177,10 +196,12 @@ function xmlParser1(data) {
         fillOpacity: 0.35
         });  
     
-    
-    var centre= tabPoint[12];
+   var milieu=Math.round(tabPoint.length/2);
+    var centre= tabPoint[milieu];
     recenterMap2(centre);
-    $zoom=13;
+    $zoom=14;
+    
+    
 }
     
 
@@ -210,6 +231,8 @@ function xmlParser1(data) {
 	  commune='error';
       }
     });
+     
+     
  return commune;
 }
 
@@ -293,7 +316,7 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
     };
 
   
-    var named = $latitude+' '+$longitude;
+    named = $latitude+' '+$longitude;
 	
     
     xhr.open("GET", "http://comunapp.openrsi.fr/informations_get.php?categorie=3&commune=78280");

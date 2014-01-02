@@ -46,7 +46,7 @@ function indexHTML(){
     var polygone = new google.maps.Polygon;
      $points="test";
     var $tabPoint= new Array;
-    
+     $commune=""; 
     
     // --- Coordonnées GPS des marker pour infoWindows à visualiser sur la carte ---
     var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content :"Rue en travaux le 12 dec"};
@@ -54,7 +54,7 @@ function indexHTML(){
     var $Evenement3={ name: 'Event 3', lat: 48.843198, lng: 2.369957, content : "evenement 3 contenu_3"};
     var $Evenement4={ name: 'Event 4', lat:4, lng: 4, content : 'evenement 4 contenu 4'};
     var $Evenement5={ name: 'Event 5', lat:5, lng: 5, content : 'evenement 5 contenu 5'};
-    
+    var $codePostal={value:''};
    
     
     var $positionInitial =new google.maps.LatLng();

@@ -1,11 +1,15 @@
-  
+  /*
+ 
+                              -------- GESTION DE LA LOCALISATION  -------------
+
+*/
   function main(){
   
     document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
-     
+    
       
-    if ((newLongitude != $longitude) || (newLongitude != $longitude)){      
+    if ((newLatitude !=  $latitude) || (newLongitude != $longitude)){      
       updateGpsPosition();
     } 
        
@@ -23,9 +27,7 @@
   function onSuccess(position) {
     $latitude = position.coords.latitude; 
     $longitude = position.coords.longitude;
-    $latitudeInit = $latitude;
-    $longitudeInit =  $longitude ;
-    
+  
     afficheMap($latitude, $longitude);
       
     afficheMarker($latitude, $longitude);
@@ -47,31 +49,25 @@
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-      
-             
-       if (position.coords.accuracy < 100){
            
-           if ($latitudeInit-newLatitude > 0.00101){
-                recenterMap(newLatitude,newLongitude);
-       }
-          afficheMarker(newLatitude,newLongitude);
-         $adresse=getCommune( newLatitude, newLongitude);
+       if (position.coords.accuracy < 160){
         
-         var reg1=new RegExp(",");
-          adressePart2=$adresse.split(reg1);
+           afficheMaPosition(newLatitude,newLongitude);     //   affiche ma position "point bleu" sur la carte
+           $adresse=getCommune( newLatitude, newLongitude); //   recupere l'adresse de ma position
+     
+           var reg1=new RegExp(",");                       // recupere le code postal de l'adresse
+           adressePart2=$adresse.split(reg1);    
+           codePostal=adressePart2[1].substr(1, 6);
            
-          codePostal=adressePart2[1].substr(1, 6);
-           
+           if (codeP != codePostal){                        // si le code postal à changer refaire contour 
+           afficheContour2(codePostal); 
+           codeP=codePostal;
+           }
            
       }
-    
-        
           afficheInfo( $adresse);
-       
-         afficheContour2(codePostal);
-       
-        
-   }, null, {enableHighAccuracy:true, maximumAge:1000, timeout: 1500}); 
+         //afficheContour2(codePostal);    
+   }, null, {enableHighAccuracy:true, maximumAge:500, timeout: 1500}); 
     
    
     
@@ -84,10 +80,17 @@
 */		   
 function stopWatch(){
   navigator.geolocation.clearWatch(watchId);
-}    
+}  
+
+ /*
+ 
+                              -------- GESTION   AFFICHAGE DE LA CARTE  -------------
+
+*/
+
   
 /*
-*  Affiche les infos sur la carte 
+*  Affiche les infos sur la carte : fenetre  transparente sur la carte
 */
 function afficheInfo($infos){
   var div = document.getElementById("textDiv");
@@ -96,23 +99,31 @@ function afficheInfo($infos){
 
 
 /*
-*  Creer une carte avec la position passé en parametre  
+*  Creer une carte centrée sur la position passé en parametre  
 */
 function afficheMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
-  
- 
-  //afficheContour2( $codePostal.value) ;
-  //createInfoWindow();  
-    
- //afficheContour();       
+ // getInfoWindow();     
+ //afficheContour2();       
 }
 
 
 /*
-*   Re-centrer la carte 
+*   afficher point bleu de localisation sur la carte
+*/
+function afficheMaPosition(lat,lng) {
+  var myPosition =new google.maps.LatLng(lat,lng);
+  var  iconIci = new google.maps.MarkerImage('img/icon1.png');  
+  marker.setPosition(myPosition);
+  marker.setIcon(iconIci); 
+  marker.setMap(map);
+} 
+
+  
+/*
+*   Re-centrer la carte sur les cordonnées passé en arguments
 */     
 function recenterMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
@@ -125,8 +136,16 @@ function recenterMap2(pos){
    map.panTo(pos); 
 }
 
+
 /*
-*    Affiche le contour en fonction du fichier situé sur un serveur
+ 
+                              ----------    TRAITEMENTS DES CONTOURS  -----------
+
+*/
+
+
+/*
+*    Affiche les contours en fonction du fichier kml situé sur un serveur openrsi
 */
 function afficheContour(){
   var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/test.kml' });
@@ -134,13 +153,11 @@ function afficheContour(){
   ctaLayer.setMap(map);
 }
 
-  
+/*
+*    Affiche les contours  en fonction du code postal (cp) en interrogeant une database situé sur un serveur openrsi
+*/  
 function afficheContour2(cp){
-   
-   
-  url="http://spiritblues.free.fr/getVille.php?cp="+cp;
-      
- 
+  url="http://sylnebert.openrsi.fr/getville.php?cp="+cp;
     $(document).ready(function(){
         $.ajax({
             type: "GET",
@@ -163,7 +180,7 @@ function xmlParser1(data) {
     $(xml).find("coordinates").each(function () {string = $(this).attr("latlng");});
     tableau=string.split(reg);
     
-    //reset (tabPoint[j]
+    //  reset (tabPoint[j]
     for (var z=0;z<tabPoint.length ;z++){
          
       tabPoint[z]=NULL  ; 
@@ -189,21 +206,25 @@ function xmlParser1(data) {
       polygone = new google.maps.Polygon({
         map: map,
         paths: chemin,
-        strokeColor: '#00AA00',
+        strokeColor: '#00FF00',
         strokeOpacity: 0.8,
-        strokeWeight: 1,
-        fillColor: '#00FF00',
+       strokeWeight: 1,
+        fillColor: '#00AA00',
         fillOpacity: 0.35
         });  
     
    var milieu=Math.round(tabPoint.length/2);
-    var centre= tabPoint[milieu];
+   var centre= tabPoint[milieu];
     recenterMap2(centre);
     $zoom=14;
-    
-    
 }
     
+
+/*
+ 
+                              ------------    GEODECODING  -------------
+
+*/
 
 
 
@@ -211,7 +232,8 @@ function xmlParser1(data) {
 
  /*
   *   Retourne le nom de la localité fonction des coordonées GPS passé en parametre
-  */   
+  */ 
+  
  function getCommune(lati,longi) {
  geocoder = new google.maps.Geocoder();
   var lat = parseFloat(lati);
@@ -237,53 +259,19 @@ function xmlParser1(data) {
 }
 
 
-function getCommune2(lat,lng){
-    
-   var latlng = new google.maps.LatLng(lat, lng); 
-    
-    geocoder.geocode({'latLng': latlng}, function(results, status) { 
-      if (status == google.maps.GeocoderStatus.OK) { 
-        if (results[1]) { 
-            res1=results[0].formatted_address.replace(/,/gi);       
-          res2= results[0].formatted_address;
-        } 
-      } else { 
-        alert("Les coordonnée n'ont pas pu être géolocalisées pour la raison suivante : " + status); 
-      } 
-    }); 
-  
-     afficheInfo(res2);
-
-   //return res2;
-}
-
-
 
 
 
 /*
-* afficher marker "icon bleu" sur la carte
-*/
-function afficheMarker(lat,lng) {
-  var myPosition =new google.maps.LatLng(lat,lng);
-  var  iconIci = new google.maps.MarkerImage('img/icon1.png');
-    
-  marker.setPosition(myPosition);
-  marker.setIcon(iconIci); 
-  marker.setMap(map);
-} 
-  
+ 
+                              ------------    GESTION DES INFOS WINDOWS --------
 
-/*
-* afficher infobulle sur la carte
 */
- function infoBulle(){  
-    var infobulle = new google.maps.InfoWindow({content: 'vous êtes ici'}); 
-    infobulle.open(map, marker);      
-}
+
+
    
 
-function createInfoWindow(){
+function getInfoWindow(){
     
    var TabObjectWindows = new Array;
    TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$latitude+0.00101,$longitude+0.001,$Evenement1.content) ;
@@ -314,27 +302,19 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
             callback(xhr.responseText);
         }
     };
-
-  
-    named = $latitude+' '+$longitude;
-	
-    
+     
     xhr.open("GET", "http://comunapp.openrsi.fr/informations_get.php?categorie=3&commune=78280");
     xhr.send(null);
 }
 
-function readData(sData) {
- 	
-    $Evenement1.content=sData;
-    afficheInfo($infos);
-   afficheMap($latitude,$longitude);
+function readData(sData) { 	
+$Evenement1.content=sData;
+afficheMap($latitude,$longitude);
 }
    
  
  
-     
-     
-  
+ 
     
 function createXmlHttpRequest() {
 try {
@@ -348,80 +328,4 @@ changeStatus(e);
 }
 return null;
 };
-
-function downloadUrl(url, callback) {
- var status = -1;
- var request = createXmlHttpRequest();
- if (!request) {
-  return false;
- }
-    
-request.onreadystatechange = function() {
-    
- if (request.readyState == 4) {
-    
-  try {
-   status = request.status;
-     } catch (e){
-    }
-   if (status == 200) {
-   callback(request.responseText, request.status);
-    request.onreadystatechange = function() {};
-  }
- }
-}
-  request.open('GET', url, true);
- try {
- request.send(null);
- } catch (e) {
-  changeStatus(e);
- }
-
-};
-
-    
- function xmlParse(str) {
-if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined') {
-var doc = new ActiveXObject('Microsoft.XMLDOM');
-doc.loadXML(str);
-return doc;
-}
-if (typeof DOMParser != 'undefined') {
-return (new DOMParser()).parseFromString(str, 'text/xml');   
- }
-return createElement('div', null);
-}   
-
-/*
-function getXML(url){
-  downloadUrl(url, function(data) {
-var xml = xmlParse(data);
-var markers = xml.documentElement.getElementsByTagName("marker");
-$infos=markers[2].getAttribute("titre")+" : "+markers[2].getAttribute("description");
-afficheInfo($infos);   
-       
-for (var i = 0; i < markers.length; i++) {
-createMarker(parseFloat(markers[i].getAttribute("lat")),
-parseFloat(markers[i].getAttribute("lng")), markers[i].getAttribute('titre'),
-markers[i].getAttribute('description'));
-    
- 
-}
-});   
-        
-}
-*/
-
-
-function getXML(url){
-  downloadUrl(url, function(data) {
-var xml = xmlParse(data);
-var markers = xml.documentElement.getElementsByTagName("coordinates");
-$infos=markers[0].getAttribute("latlng");
- afficheInfo($infos);  
-       
-
-});   
-        
-}
 

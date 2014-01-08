@@ -35,18 +35,19 @@ function indexHTML(){
                           /* **************************************************
                            *    --- Declaration des Variables  Globales ---   *
                            ***************************************************/
+    var codeP;
     var $latitudeInit;
 	var $longitudeInit;
     var $latitude=48.858565;
 	var $longitude=2.347198;
     var $zoom = 12;
-    var newLongitude =null;
-	var newLatitude = null;
+    var newLongitude = 0;
+	var newLatitude = 0;
     var $infos="Recherche nom de la localité";
     var polygone = new google.maps.Polygon;
-     $points="test";
+    var $points="test";
     var $tabPoint= new Array;
-     $commune=""; 
+    var $commune=""; 
     
     // --- Coordonnées GPS des marker pour infoWindows à visualiser sur la carte ---
     var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content :"Rue en travaux le 12 dec"};

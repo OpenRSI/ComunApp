@@ -1,20 +1,25 @@
-  
+  /*
+ 
+                              -------- GESTION DE LA LOCALISATION  -------------
+
+*/
   function main(){
   
     document.addEventListener("deviceready", onDeviceReady, false);
     afficheInfo($infos);
-     
+    
       
-    if ((newLongitude != $longitude) || (newLongitude != $longitude)){      
+    if ((newLatitude !=  $latitude) || (newLongitude != $longitude)){      
       updateGpsPosition();
     } 
-      
-    
+       
   }
     
+
   function onDeviceReady() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
   } 
+
 
   /*
   *   onSuccess : Lecture du capteur GPS , affiche Map et marker 
@@ -22,13 +27,11 @@
   function onSuccess(position) {
     $latitude = position.coords.latitude; 
     $longitude = position.coords.longitude;
-    $latitudeInit = $latitude;
-    $longitudeInit =  $longitude ;
-    
+  
     afficheMap($latitude, $longitude);
       
     afficheMarker($latitude, $longitude);
-    
+ 
   } 
   
   /*
@@ -36,34 +39,39 @@
   */
   function onError(error) {
     $infos='err : '+ error.code+' message: ' + error.message;        
-    afficheInfo($infos);           
+           
   }
-   
+ 
  function updateGpsPosition(){  
      
- var watchId = navigator.geolocation.watchPosition(
+ watchId = navigator.geolocation.watchPosition(
         
     function(position){ 
       newLatitude = position.coords.latitude; 
       newLongitude = position.coords.longitude;
-       $infos=getCommune( newLatitude, newLongitude);
-             
-       if (position.coords.accuracy < 100){
            
-           if ($latitudeInit-newLatitude > 0.000100){
-                recenterMap(newLatitude,newLongitude);
-       }
-          afficheMarker(newLatitude,newLongitude);
-         $infos=getCommune( newLatitude, newLongitude);
+       if (position.coords.accuracy < 160){
+        
+           afficheMaPosition(newLatitude,newLongitude);     //   affiche ma position "point bleu" sur la carte
+           $adresse=getCommune( newLatitude, newLongitude); //   recupere l'adresse de ma position
+     
+           var reg1=new RegExp(",");                       // recupere le code postal de l'adresse
+           adressePart2=$adresse.split(reg1);    
+           codePostal=adressePart2[1].substr(1, 6);
+           
+           if (codeP != codePostal){                        // si le code postal à changer refaire contour 
+           afficheContour2(codePostal); 
+           codeP=codePostal;
+           }
            
       }
-      
-      afficheInfo($infos);  
-       
-   }, null, {enableHighAccuracy:true, maximumAge:20, timeout: 1000}); 
+          afficheInfo( $adresse);
+         //afficheContour2(codePostal);    
+   }, null, {enableHighAccuracy:true, maximumAge:500, timeout: 1500}); 
     
-     
-     
+   
+    
+       
      
  }      
          
@@ -72,10 +80,17 @@
 */		   
 function stopWatch(){
   navigator.geolocation.clearWatch(watchId);
-}    
+}  
+
+ /*
+ 
+                              -------- GESTION   AFFICHAGE DE LA CARTE  -------------
+
+*/
+
   
 /*
-*  Affiche les infos sur la carte 
+*  Affiche les infos sur la carte : fenetre  transparente sur la carte
 */
 function afficheInfo($infos){
   var div = document.getElementById("textDiv");
@@ -84,20 +99,31 @@ function afficheInfo($infos){
 
 
 /*
-*  Creer une carte avec la position passé en parametre  
+*  Creer une carte centrée sur la position passé en parametre  
 */
 function afficheMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
   map = new google.maps.Map(document.getElementById('map'),mapOptions);
   map.setCenter(position);
- createInfoWindow();
- afficheContour();   
- //map.panTO(position);
-    
-    }
+ // getInfoWindow();     
+ //afficheContour2();       
+}
+
 
 /*
-*   Re-centrer la carte 
+*   afficher point bleu de localisation sur la carte
+*/
+function afficheMaPosition(lat,lng) {
+  var myPosition =new google.maps.LatLng(lat,lng);
+  var  iconIci = new google.maps.MarkerImage('img/icon1.png');  
+  marker.setPosition(myPosition);
+  marker.setIcon(iconIci); 
+  marker.setMap(map);
+} 
+
+  
+/*
+*   Re-centrer la carte sur les cordonnées passé en arguments
 */     
 function recenterMap(lat,lng){
   var position = new google.maps.LatLng(lat,lng);
@@ -105,22 +131,111 @@ function recenterMap(lat,lng){
    map.panTo(position); 
 }
 
+function recenterMap2(pos){
+  
+   map.panTo(pos); 
+}
 
 
 /*
-*    Affiche le contour en fonction du fichier situer sur un serveur
+ 
+                              ----------    TRAITEMENTS DES CONTOURS  -----------
+
+*/
+
+
+/*
+*    Affiche les contours en fonction du fichier kml situé sur un serveur openrsi
 */
 function afficheContour(){
-  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/dep.kml' });
+  var ctaLayer = new google.maps.KmlLayer({ url: 'http://sylnebert.openrsi.fr/test.kml' });
     preserveViewport: true;
   ctaLayer.setMap(map);
 }
+
+/*
+*    Affiche les contours  en fonction du code postal (cp) en interrogeant une database situé sur un serveur openrsi
+*/  
+function afficheContour2(cp){
+  url="http://sylnebert.openrsi.fr/getville.php?cp="+cp;
+    $(document).ready(function(){
+        $.ajax({
+            type: "GET",
+            url: url,
+            dataType: "xml",
+            success: xmlParser1
+        });
+    }); 
+     
+}
+
+
+function xmlParser1(data) {
+    
+    var chemin = new google.maps.MVCArray();
+    var tabPoint = new Array;
+    var reg=new RegExp("[ ,:]+");
+    
+    xml = data;
+    $(xml).find("coordinates").each(function () {string = $(this).attr("latlng");});
+    tableau=string.split(reg);
+    
+    //  reset (tabPoint[j]
+    for (var z=0;z<tabPoint.length ;z++){
+         
+      tabPoint[z]=NULL  ; 
+      }
+   
+  b=0;
+  a=0;
+   do {
+     var lat= Number(tableau[a]);
+     var long= tableau[a+1];
+      tabPoint[b]= new google.maps.LatLng(lat,long); 
+      b++;
+       a=a+2;
+     } while(a<tableau.length); 
   
+   
+      for (var j=0;j<tabPoint.length ;j++){
+         
+      chemin.push(tabPoint[j]);   
+      }
+        
+    
+      polygone = new google.maps.Polygon({
+        map: map,
+        paths: chemin,
+        strokeColor: '#00FF00',
+        strokeOpacity: 0.8,
+       strokeWeight: 1,
+        fillColor: '#00AA00',
+        fillOpacity: 0.35
+        });  
+    
+   var milieu=Math.round(tabPoint.length/2);
+   var centre= tabPoint[milieu];
+    recenterMap2(centre);
+    $zoom=14;
+}
+    
+
+/*
+ 
+                              ------------    GEODECODING  -------------
+
+*/
+
+
+
+
+
  /*
   *   Retourne le nom de la localité fonction des coordonées GPS passé en parametre
-  */   
+  */ 
+  
  function getCommune(lati,longi) {
-  var geocoder = new google.maps.Geocoder();
+ geocoder = new google.maps.Geocoder();
   var lat = parseFloat(lati);
   var lng = parseFloat(longi);
   var latlng = new google.maps.LatLng(lat, lng);
@@ -128,8 +243,9 @@ function afficheContour(){
   geocoder.geocode({'latLng': latlng}, function(results, status) {
   
     if (status == google.maps.GeocoderStatus.OK) {
-      if (results[0]) {
-		commune = results[2].formatted_address;
+      if (results[1]) {
+		
+         commune  = results[0].formatted_address;
       } else {
 		commune='none';
       }
@@ -137,37 +253,29 @@ function afficheContour(){
 	  commune='error';
       }
     });
+     
+     
  return commune;
 }
 
 
 
+
+
 /*
-* afficher marker "icon bleu" sur la carte
+ 
+                              ------------    GESTION DES INFOS WINDOWS --------
+
 */
-function afficheMarker(lat,lng) {
-  var myPosition =new google.maps.LatLng(lat,lng);
-  var  iconIci = new google.maps.MarkerImage('img/icon1.png');
-    
-  marker.setPosition(myPosition);
-  marker.setIcon(iconIci); 
-  marker.setMap(map);
-} 
-  
-/*
-* afficher infobulle sur la carte
-*/
- function infoBulle(){  
-    var infobulle = new google.maps.InfoWindow({content: 'vous êtes ici'}); 
-    infobulle.open(map, marker);      
-}
+
+
    
 
-function createInfoWindow(){
+function getInfoWindow(){
     
    var TabObjectWindows = new Array;
-   TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$Evenement1.lat,$Evenement1.lng,$Evenement1.content) ;
-   TabObjectWindows[1] = new Object_Windows('marker2','infoWindows2', $Evenement2.lat,$Evenement2.lng,$Evenement2.content) ; 
+   TabObjectWindows[0] = new Object_Windows('marker1','infoWindows1',$latitude+0.00101,$longitude+0.001,$Evenement1.content) ;
+   TabObjectWindows[1] = new Object_Windows('marker2','infoWindows2', $latitude-0.00229,$longitude-0.003,$Evenement2.content) ; 
     
    for (var i=0;i<TabObjectWindows.length;i++){
       TabObjectWindows[i].makerID.setPosition( TabObjectWindows[i].marker_LatLng);
@@ -186,9 +294,7 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
     }
   
 
-
- 
-  function request(callback) {
+ function request(callback) {
     var xhr = new XMLHttpRequest();
     
     xhr.onreadystatechange = function() {
@@ -196,43 +302,30 @@ function Object_Windows(makerID,infoWindowsID,lat,lng,contenu) {
             callback(xhr.responseText);
         }
     };
-
-  
-    var named = $latitude+' '+$longitude;
-	
-    
-    xhr.open("GET", "http://sylnebert.openrsi.fr/ajax.php?named= " + named);
+     
+    xhr.open("GET", "http://comunapp.openrsi.fr/informations_get.php?categorie=3&commune=78280");
     xhr.send(null);
 }
 
-function readData(sData) {
- 	
-    $Evenement1.content=sData;
-    afficheInfo($infos);
-   afficheMap($latitude,$longitude);
+function readData(sData) { 	
+$Evenement1.content=sData;
+afficheMap($latitude,$longitude);
 }
    
-     
-     
-  /* 
-  xhr.open("POST", "http://sylnebert.openrsi.fr/test.php", true);
- xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
- xhr.send("login=rene&pwd=password");
+ 
+ 
+ 
     
-     xhr.open("GET", "http://sylnebert.openrsi.fr/test.php", true);
-    /*xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("login=rene&pwd=password")
-function readData(sData) {
-   $infos=sData;
-    afficheInfo($infos);  
-  
-} xhr.send(null);
-    
-    */
-    
+function createXmlHttpRequest() {
+try {
+if (typeof ActiveXObject != 'undefined') {
+return new ActiveXObject('Microsoft.XMLHTTP');
+} else if (window["XMLHttpRequest"]) {
+return new XMLHttpRequest();
+}
+} catch (e) {
+changeStatus(e);
+}
+return null;
+};
 
-
-
-    
-    
-    

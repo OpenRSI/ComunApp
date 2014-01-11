@@ -1,0 +1,284 @@
+<html>
+<head>
+		<meta charset="utf-8" />
+        
+        <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    
+   
+    	<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery.mobile-1.3.1.min.js"></script>
+    	<script type="text/javascript" src="cordova.js"></script>
+
+        <script type="text/javascript" src="js/defiler.js"></script>
+    
+  	
+		<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+    
+
+<script type="text/javascript">
+    var cacherss = Fichier('http://comunapp.openrsi.fr/rss/cache_local/cache.txt');
+    window.localStorage.setItem( 'cache', cacherss);    
+</script>    
+ 
+    
+<script type="text/javascript">
+			$(function(){
+				            
+            
+            //----Gestion des boutons Menu--------------------------->
+    
+            //----Menu Header ------------->
+    
+                         
+            var myMenu = $('#MENUHSA');
+                myMenu.bind('click', function() {
+                    //window.location = "index.html";
+                    //$("#MENUACT").toggle("slow");
+                });
+               
+                //myMenu.bind('click', function() {window.location = "index.html";});
+                myMenu.bind('mouseenter', function() {navigator.notification.vibrate(100);});
+                
+ 
+
+               
+                
+                
+                
+                
+                
+                //myMenu.css('background-color', 'red');
+                
+                //myMenu.bind('click', function() {$.mobile.changePage("geo.html",{transition: "slow"});});
+                
+                
+                		                
+                
+                
+                
+                //myMenu.show(); 
+                
+                // $("#MENUHSA").bind("click",function(){
+                //window.location = "index.html";
+                //});
+                
+                //$( "#MENUHSA" ).bind( "mouseenter", function() {
+                //navigator.notification.vibrate(100);
+                //});
+    
+                
+              
+                
+            //----Menu Boutons ------------->
+                
+            $("#SIGNALP").bind("click",function(){
+                    window.location = "signaler.html";
+                //$("#MENUACT").toggle("slow");
+            });
+                
+            $("#TWITTERP").bind("click",function(){
+                    window.location = "twitter.html";
+            });
+                
+                
+                
+                
+                var myAdmin = $('#ADMINP');
+                myAdmin.bind('click', function() {
+                    window.location = "twitter.html";
+                    //$("#MENUACT").toggle("slow");
+                    //$.mobile.changePage("geo.html",{transition: "slow", reverse: false,changeHash: false});
+                    //$.mobile.changePage("twitter.html",{transition: "slow"});
+                
+                
+                });
+               
+                //myMenu.bind('click', function() {window.location = "index.html";});
+                myAdmin.bind('mouseover', function() {
+                    navigator.notification.vibrate(50);
+                    //$('#MENUACT').hide("slow"); 
+                    $('#MENUACT').fadeOut("slow");
+                                                     
+                                                     });
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            //------------------------------------------------------>
+                                
+            
+            });
+			
+		</script>
+    
+    
+<script type="text/javascript">
+function geo(){
+window.location = "geo.html";
+}
+</script>
+    
+    
+	<title>ComunApp</title>
+	
+</head>
+
+
+	
+<body>
+
+
+<div id="main" data-role="page">
+
+
+
+
+	<div data-role="header" data-fullscreen="true" data-theme="b">
+		
+        <div id="MENUHSA" class="colonneH"><img class="img1" src="img/BigLogo.png"/></div>
+        <div class="colonneH1"><a href="credit.html" ata-transition="none"><img class="img1" src="img/engrenage.png"/></a></div>  
+        <div class="colonneH1"><div class="colonneHbis"><div  align="right" id="starC"><b>10</b></div></div><center><img class="img1" src="img/star.png"/></center></div>
+
+    </div>
+	
+
+     <center><div id="def">
+            
+                <span>
+                    <nobr>
+                        <script type="text/javascript">
+                           Contenu = window.localStorage.getItem('cache');
+                           document.write(Contenu);
+                        </script>
+                    </nobr>
+                </span>
+           
+    	</div> </center> 
+    
+    
+          <center>
+        
+            <div id="panneau">
+                <div id="panneau1">
+       
+                <p>
+                    MA VILLE
+                </p>
+                </div>
+            </div>
+	
+        
+	    </center>	
+    
+    
+    
+         
+    
+    
+    
+    
+    <div id="conteneur" data-role="content">	
+	
+		
+        
+  
+              
+        
+        <center>
+        
+            <div class="colonne"><div id="MENUACT" style="background-color:#FF5C05;"><a href="" onclick="geo()"><img src="img/news.png" height="80" width="80"/><br/><div class="Fontmenu">Actualités</div></a></div></div>
+            <div class="colonne"><div id="TWITTERP" style="background-color:#FF6F08;"><img src="img/sortir.png" height="80" width="80"/><br/><div class="Fontmenu">Web 2.0</div></div></div>
+            <div class="colonne"><div style="background-color:#E82003;"><img src="img/pratique.png" height="80" width="80"/><br/><div class="Fontmenu">Proximité</div></div></div>
+	
+        
+	    </center>	
+        
+
+        
+       
+        <center>
+        
+            <div class="colonne"><div id="SIGNALP" style="background-color:#FF0391;"><img src="img/signaler.png" height="80" width="80"/><br/><div class="Fontmenu">Signaler</div></div></div>
+            <div class="colonne"><div style="background-color:#B60EFF;"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="80" width="80"/><br/><div class="Fontmenu">Pratique</div></a></div></div>
+            <div class="colonne"><div id="ADMINP" style="background-color:#310BFF;"><img src="img/mairie.png" height="80" width="80"/><br/><div class="Fontmenu">Services</div></div></div>
+
+ 
+	    </center>	
+	 
+        
+	   
+    
+	</div>
+    
+    
+   
+    
+    
+       
+    
+    
+    <div id="village" data-role="footer" data-fullscreen="true" data-theme="none" data-position="fixed">
+		
+        <center><img class="img1" src="img/village.png"/></center>
+		
+	
+    	
+    
+    
+    </div>
+    
+    
+    
+    
+    <!--   
+    
+    <div data-role="footer" data-position="fixed">
+        
+        
+        <div id="def">
+            
+                <span>
+                    <nobr>
+                        <script type="text/javascript">
+                           Contenu = window.localStorage.getItem('cache');
+                           document.write(Contenu);
+                        </script>
+                    </nobr>
+                </span>
+           
+        </div>   
+        
+		<center>
+		    <div class="colonnePied"><img src="img/homeJ.png" height="30" width="30"/></div>   
+		    <div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
+		    <div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
+		    <div class="colonnePied"><img src="img/pratique.png" height="30" width="30"/></div>  
+		    <div class="colonnePied"><a href="signaler.html" data-transition="none"><img src="img/signaler.png" height="30" width="30"/></a></div>  
+		    <div class="colonnePied"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="30" width="30"/></a></div>  
+		    <div class="colonnePied"><img src="img/mairie.png" height="30" width="30"/></div>  
+		</center> 
+    
+    
+    
+    </div> -->
+    
+	
+	
+</div>	
+
+		
+		
+  
+</body>
+
+</html>

@@ -119,7 +119,7 @@ $(document).bind('pageinit', function() {
         var options = new FileUploadOptions();
         var params = new Object();
         options.fileKey="file";
-        options.fileName= preview.attr('src').substr(fileURI.lastIndexOf('/')+1);
+        options.fileName= preview.attr('src').substr(preview.attr('src').lastIndexOf('/')+1);
         options.mimeType="image/jpeg";
         params.type = type;
         params.commentaire = commentaire;

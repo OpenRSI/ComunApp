@@ -1,6 +1,5 @@
 <html>
     
-    
 <head>
 	<meta charset="utf-8" />
         
@@ -35,27 +34,22 @@ function indexHTML(){
                           /* **************************************************
                            *    --- Declaration des Variables  Globales ---   *
                            ***************************************************/
-    var codeP;
     var $latitudeInit;
 	var $longitudeInit;
     var $latitude=48.858565;
 	var $longitude=2.347198;
-    var $zoom = 12;
-    var newLongitude = 0;
-	var newLatitude = 0;
+    var $zoom = 15;
+    var newLongitude =null;
+	var newLatitude = null;
     var $infos="Recherche nom de la localité";
-    var polygone = new google.maps.Polygon;
-    var $points="test";
-    var $tabPoint= new Array;
-    var $commune=""; 
     
-    // --- Coordonnées GPS des marker pour infoWindows à visualiser sur la carte ---
-    var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content :"Rue en travaux le 12 dec"};
-    var $Evenement2={ name: 'Event 2', lat: 48.844666, lng: 2.373519, content : 'GARE SNCF <a href="http://sncf.fr">de la sncf</a>'}; 
+    // --- Coordonnées GPS des marker pour infobulle à visualiser sur la carte ---
+    var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content :" Hotel Ibis tel +33 6 20 61 38 70"};
+    var $Evenement2={ name: 'Event 2', lat: 48.844666, lng: 2.373519, content : 'lien voir le site <a href="http://sncf.fr">de la sncf</a>'}; 
     var $Evenement3={ name: 'Event 3', lat: 48.843198, lng: 2.369957, content : "evenement 3 contenu_3"};
     var $Evenement4={ name: 'Event 4', lat:4, lng: 4, content : 'evenement 4 contenu 4'};
     var $Evenement5={ name: 'Event 5', lat:5, lng: 5, content : 'evenement 5 contenu 5'};
-    var $codePostal={value:''};
+    
    
     
     var $positionInitial =new google.maps.LatLng();
@@ -76,8 +70,8 @@ function indexHTML(){
       }
       
     
-     map = new google.maps.Map(document.getElementById('map'),mapOptions);
-     geocoder = new google.maps.Geocoder();
+    var map = new google.maps.Map(document.getElementById('map'),mapOptions);
+    
 </script>
     
 	<title>Comunapp</title>
@@ -115,7 +109,7 @@ function indexHTML(){
     <input type="button" onclick="request(readData);" value="Info " />
 		<center>
             
-            <div class="colonnePied"><a href=""  onclick="indexHTML()"   > <img src="img/home.png" height="30" width="30"/></a></div>   
+            <div class="colonnePied"><a href="" onclick="indexHTML()" > <img src="img/home.png" height="30" width="30"/></a></div>   
 		    <div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
 		    <div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
 		    <div class="colonnePied"><img src="img/pratiqueJ.png" height="30" width="30"/></div>  

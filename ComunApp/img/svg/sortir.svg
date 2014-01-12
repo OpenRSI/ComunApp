@@ -1,8 +1,5 @@
-
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	width="100%" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
-<path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
-	M34.827,36.195C48.553,32.66,46.709,3.083,46.709,3.083S38.15,5.101,32.018,5.101S17.328,3.083,17.328,3.083
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 50 50">
+<path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M34.827,36.195C48.553,32.66,46.709,3.083,46.709,3.083S38.15,5.101,32.018,5.101S17.328,3.083,17.328,3.083
 	s-0.399,6.404,0.556,13.608"/>
 <g id="Calque_2_1_">
 	<path fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="

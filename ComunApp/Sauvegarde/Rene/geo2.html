@@ -1,122 +1,67 @@
+<!DOCTYPE html> 
 <html>
-    
 <head>
-	<meta charset="utf-8" />
-        
-    <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=device-dpi" />
-	<script src="js/OpenLayers.js"></script>
-	
-    <script src="js/jquery-1.9.1.min.js"></script>
-	<script src="js/jquery.mobile-1.3.1.min.js"></script>
-
-	<script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="js/comuneo.js"></script>		
-		
-	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/main.css" />
-	
-	<link rel="stylesheet" type="text/css" href="css/geo.css" />
-	<script  src="js/geo2.js"></script>
-	
-	
-<script type="text/javascript">
-    
-                          // --> redirection vers la page index
-    
-function indexHTML(){
- 
- window.location = "index.html";
-}
-</script>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jQuery Mobile Web App</title>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/mobile/1.0b2/jquery.mobile-1.0b2.min.js"></script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script src="jquery.ui.map.min.js"></script>
 <script>
-                          /* **************************************************
-                           *    --- Declaration des Variables  Globales ---   *
-                           ***************************************************/
-    var $latitudeInit;
-	var $longitudeInit;
-    var $latitude=48.858565;
-	var $longitude=2.347198;
-    var $zoom = 12;
-    var newLongitude =null;
-	var newLatitude = null;
-    var vector = new OpenLayers.Layer.Vector('vector');
 
-    
-    
-    
-    var $infos="Recherche nom de la localité";
-    
-    // --- Coordonnées GPS des marker pour infobulle à visualiser sur la carte ---
-    var $Evenement1={ name: 'Event 1', lat: 48.847773, lng: 2.369871, content :" Hotel Ibis tel +33 6 20 61 38 70"};
-    var $Evenement2={ name: 'Event 2', lat: 48.844666, lng: 2.373519, content : 'lien voir le site <a href="http://sncf.fr">de la sncf</a>'}; 
-    var $Evenement3={ name: 'Event 3', lat: 48.843198, lng: 2.369957, content : "evenement 3 contenu_3"};
-    var $Evenement4={ name: 'Event 4', lat:4, lng: 4, content : 'evenement 4 contenu 4'};
-    var $Evenement5={ name: 'Event 5', lat:5, lng: 5, content : 'evenement 5 contenu 5'};
-   
-    var newLonLat = new OpenLayers.LonLat($longitude, $latitude); 
- 
-    var $positionInitial ;
-    var marker ;
-     var map, layer;
-    var marker1= new OpenLayers.Marker(lonLat,icon);
-    var mapOptions={
-         
-      }
-      
-    
-   
+$('#mapPage').live('pageshow',function(){
+
+	$('#map_canvas').gmap({ 'center': new google.maps.LatLng(42.345573,-71.098326),
+						'zoom':14, 'callback':function() {
+							$('#map_canvas').gmap('addMarker',{'position':new google.maps.LatLng(42.345573,-71.098326)})
+						} });
+		
+});
 </script>
-    
-   
-    
-    
-	<title>Comunapp</title>
-	
-</head>
+</head> 
+<body> 
 
-<body onload="init()" >
-
-<div id="main" data-role="page">
-
-<div data-role="header" data-fullscreen="true" data-theme="b">
-        <div class="colonneH"><a href="index.html" data-transition="none"><img class="img1" src="img/BigLogo.png"/></a></div>
-		<div class="colonneH1"><a href="credit.html" ata-transition="none"><img class="img1" src="img/engrenage.png"/></a></div>  
-        <div class="colonneH1"><div class="colonneHbis"><div  align="right" id="starC"><b>10</b></div></div><center><img class="img1" src="img/star.png"/></center></div>
+<div data-role="page" id="page">
+	<div data-role="header">
+		<h1>Page One</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="#page2">Page Two</a></li>
+            <li><a href="#page3">Page Three</a></li>
+			<li><a href="map.html">Our Location</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
 </div>
 
-<div id="conteneur" data-role="content">
-	<div id="info">  
-        <center>
-      
-	<div id="textDiv"></div>
-            </center>
-    
-	</div> 
-       
-	<center>
-	<div id="map">
+<div data-role="page" id="page2" data-title="Page 2">
+	<div data-role="header">
+		<h1>Page Two</h1>
 	</div>
-  
-        
-	</center>	
-    </div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
 
-<div data-role="footer" data-position="fixed">
-    <input type="button" onclick="request(readData);" value="Info " />
-		<center>
-            
-            <div class="colonnePied"><a href="" onclick="indexHTML()" > <img src="img/home.png" height="30" width="30"/></a></div>   
-		    <div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><img src="img/sortir.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><img src="img/pratiqueJ.png" height="30" width="30"/></div>  
-		    <div class="colonnePied"><a href="signaler.html" data-transition="none"><img src="img/signaler.png" height="30" width="30"/></a></div>  
-		    <div class="colonnePied"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="30" width="30"/></a></div>  
-		    <div class="colonnePied"><img src="img/mairie.png" height="30" width="30"/></div>  
-		</center>
-    </div>	
+<div data-role="page" id="page3" data-title="Page 3">
+	<div data-role="header">
+		<h1>Page Three</h1>
+	</div>
+	<div data-role="content">	
+		Content		
+	</div>
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div>
+</div>
 
-    </div>
-    </body>
+</body>
 </html>

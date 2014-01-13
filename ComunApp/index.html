@@ -1,7 +1,6 @@
 <html>
 <head>
 		<meta charset="utf-8" />
-         
         <!--apple-mobile-web-app-capable est une balise spécifique pour les appareils mobiles Apple -->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <!-- apparence de la barre d'état "default, black ou black-translucent" -->
@@ -9,21 +8,21 @@
         <!-- Celle-ci indique tout simplement au navigateur que l'affichage du site est déjà optimisé pour le mobile -->
         <meta name="HandheldFriendly" content="true" />
         <!-- ne pas mettre width=device-width  -->
-        <meta name = "viewport" content = " height=device-height, initial-scale=1.0, user-scalable = no">
-    
-         <script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery.mobile-1.3.1.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no" />
+         <!--<meta name = "viewport" content = " height=device-height, initial-scale=1.0, user-scalable = no">-->
+         <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+		<script src="//code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
     	<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/defiler.js"></script>
-		<!-- <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" /> -->
-        <link rel="stylesheet" href="css/smartphone.css" title="SmartPhone">
+		<link rel="stylesheet" href="//code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
         <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <!-- CSS override -->
+        <link rel="stylesheet" href="css/smartphone.css" title="SmartPhone">
+    
 <script type="text/javascript">
     var cacherss = Fichier('http://comunapp.openrsi.fr/rss/cache_local/cache.txt');
     window.localStorage.setItem( 'cache', cacherss);    
-</script>    
- 
-    
+</script>
 <script type="text/javascript">
 			$(function(){
     //----Gestion des boutons Menu--------------------------->
@@ -54,23 +53,8 @@ window.location = "geo.html";
 <body>
 <div id="main" data-role="page">
     <div id="entete">
-          <p>test</p> 
     </div><!-- entete -->
-    
-    <div data-role="header" data-fullscreen="true" data-theme="b">
-            <div id="MENUHSA" class="colonneH">
-                <img class="img1" src="img/BigLogo.png"/>            
-            </div><!--#MENUHSA-->
-            <div class="colonneH1">
-                <a href="credit.html" ata-transition="none"><img class="img1" src="img/engrenage.png"/></a>
-            </div><!--.colonneH1-->
-            <div class="colonneH1">
-            	<div class="colonneHbis">
-                	<div  align="right" id="starC"><b>10</b></div>
-            	</div>
-             <center><img class="img1" src="img/star.png"/></center>
-            </div><!--.colonneH1-->
-    </div>
+
 	<center>
         <div id="def">
             <span>
@@ -89,8 +73,8 @@ window.location = "geo.html";
             <p>MA VILLE</p>
         </div>
     </div>
-    </center>	
-        <!-- Menu principal -->
+    </center>
+        <!-- Menu principal Code Laurent-->
         <ul id="conteneur" data-role="content">
             <li class="item01"><a href="#" onclick="geo()"><div class="svg"></div>Actualité</a></li>
             <li class="item02"><a href="#"><div class="svg"></div>Sortir</a></li>
@@ -100,34 +84,23 @@ window.location = "geo.html";
             <li class="item04"><a href="#"><div class="svg"></div>Signaler</a></li>
             <li class="item05"><a href="#"><div class="svg"></div>Pratique</a></li>
             <li class="item06"><a href="#"><div class="svg"></div>Service</a></li>
-        </ul>
-            
-       <!-- <center>
+        </ul> 
+       <!-- <center> 
             <div class="colonne"><div style="background-color:#FF5C05;"><a href="" onclick="geo()"><img src="img/news.png" height="80" width="80"/><br/><div class="Fontmenu">Actualités</div></a></div></div>
             <div class="colonne"><div  style="background-color:#FF6F08;"><img src="img/sortir.png" height="80" width="80"/><br/><div class="Fontmenu">Web 2.0</div></div></div>
             <div class="colonne"><div style="background-color:#E82003;"><img src="img/pratique.png" height="80" width="80"/><br/><div class="Fontmenu">Proximité</div></div></div>
 	        </center>	
-           <center>
+       <center>
             <div class="colonne"><div id="SIGNALP" style="background-color:#FF0391;"><img src="img/signaler.png" height="80" width="80"/><br/><div class="Fontmenu">Signaler</div></div></div>
             <div class="colonne"><div style="background-color:#B60EFF;"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="80" width="80"/><br/><div class="Fontmenu">Pratique</div></a></div></div>
             <div class="colonne"><div style="background-color:#310BFF;"><img src="img/mairie.png" height="80" width="80"/><br/><div class="Fontmenu">Services</div></div></div>
-            </center>	
-	 -->
- 
-    <div id="village" data-role="footer" data-fullscreen="true" data-theme="none" data-position="fixed">
-        <center><img class="img1" src="img/village.png"/></center>
-    </div>
-    
-    
-    
-    
-    <!--   
-    
+       </center>	-->
+   <div id="village" data-role="footer" data-fullscreen="true" data-theme="none" data-position="fixed">
+     <div class="svg"></div>
+   </div>
+    <!--   CODE BORIS
     <div data-role="footer" data-position="fixed">
-        
-        
         <div id="def">
-            
                 <span>
                     <nobr>
                         <script type="text/javascript">
@@ -136,9 +109,7 @@ window.location = "geo.html";
                         </script>
                     </nobr>
                 </span>
-           
         </div>   
-        
 		<center>
 		    <div class="colonnePied"><img src="img/homeJ.png" height="30" width="30"/></div>   
 		    <div class="colonnePied"><img src="img/news.png" height="30" width="30"/></div>  
@@ -148,13 +119,7 @@ window.location = "geo.html";
 		    <div class="colonnePied"><a href="urgence.html" data-transition="none"><img src="img/urgence.png" height="30" width="30"/></a></div>  
 		    <div class="colonnePied"><img src="img/mairie.png" height="30" width="30"/></div>  
 		</center> 
-    
-    
-    
     </div> -->
-    
-	
-	
 </div>	
 
 		

@@ -1,5 +1,32 @@
+#main{
+	
+	-webkit-touch-callout: none;               
+    -webkit-text-size-adjust: none;             
+    -webkit-user-select: none;                  
+    background-color:#1BA1E2;
+    background-image:linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-ms-linear-gradient(top, #1BA1E2 0%, #A6EDF2 90%);
+    background-image:-webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #1BA1E2),
+        color-stop(0.90, #A6EDF2)
+    );
+  	
+
+ 
+
+	/*position: relative;*/
+	
+}
+
+#conteneur {
 
 
+
+}
 
 .spanpratique{
 float:left;
@@ -95,6 +122,8 @@ display:inline;
 
     margin-top:1%;
     margin-bottom:9%;
+    
+
 }
 
 
@@ -106,6 +135,7 @@ display:inline;
 	font-size:24px;
     font-weight: bold;
     background-color:#fff;
+
 }
 
 
@@ -217,7 +247,8 @@ display:inline;
 
 .message1{
 
-	
+	font-family:'Helvetica', 'HelveticaNeue-Light', 'HelveticaNeue', 'Helvetica',' Arial', 'sans-serif' ;
+    font-size : 18px ;
 	color:#7200AC;
 	text-shadow:1px 1px 2px gray;
 
@@ -361,7 +392,7 @@ max-width:46px;
 	
 	padding-bottom:10px;
     font-family:'Helvetica', 'HelveticaNeue-Light', 'HelveticaNeue', Arial, sans-serif;
-    font-size:24px;
+    font-size:18px;
 	color:white;
 
 }
